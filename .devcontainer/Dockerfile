@@ -1,7 +1,7 @@
 # Node and npm are pinned per deck by scripts/init.mjs (resolved when the deck is created).
 # The two lines below are the floating fallback used by the un-initialized template.
-FROM node:lts-bookworm
-RUN npm install -g npm@latest
+FROM node:26.13.0-bookworm
+RUN npm install -g npm@12.2.1
 
 # Chromium for "npm run pdf". Debian's package exists for arm64 and amd64 (Puppeteer's own download does not for arm64 Linux).
 RUN apt-get update \

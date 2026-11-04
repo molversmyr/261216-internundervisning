@@ -1,5 +1,5 @@
 {
-  "name": "deck",
+  "name": "261216-internundervisning",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,9 +9,6 @@
     "prepare": "husky",
     "pdf": "node scripts/export-pdf.mjs",
     "build:pdf": "npm run build && npm run pdf"
-  },
-  "dependencies": {
-    "reveal.js": "6.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "21.2.4",
