@@ -1,35 +1,1825 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=1024" />
-    <title>Deck</title>
-    <link rel="stylesheet" href="./src/theme.css" />
-  </head>
-  <body class="impress-not-supported">
-    <div class="fallback-message">
-      <p>Your browser does not support the features impress.js needs; showing a simplified version.</p>
-    </div>
 
-    <div id="impress">
-      <div class="step slide" data-x="0" data-y="0">
-        <h1>Deck title</h1>
-        <p>Subtitle or presenter</p>
-      </div>
-      <div class="step slide" data-x="1200" data-y="0" data-rotate="20">
-        <h2>Second step</h2>
-        <ul>
-          <li>First point</li>
-          <li>Second point</li>
-        </ul>
-      </div>
-      <div class="step" data-x="600" data-y="0" data-scale="4"></div>
-    </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    Internundervisning - Presentation Template
+  </title>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap"
+    rel="stylesheet">
+  <!-- Main Presentation Theme -->
+  <link rel="stylesheet" href="./src/theme.css">
+</head>
 
-    <!-- Vendored, pinned release (see public/vendor/IMPRESS_VERSION). Relative path keeps the build relocatable. -->
-    <script src="./vendor/impress.js"></script>
-    <script>
-      impress().init();
-    </script>
-  </body>
+<body class="impress-not-supported">
+  <!-- Fallback message for unsupported / legacy browsers -->
+  <div class="fallback-message">
+    <h2>
+      3D Presentation Not Supported
+    </h2>
+    <p>
+      Your browser does not support the 3D CSS transforms required by impress.js. Please view this
+      presentation using a modern desktop browser (Chrome, Edge, Firefox, or Safari).
+    </p>
+  </div>
+  <!-- ==========================================================================
+           FIXED PRESENTATION HUD (Top Bar, Progress Line & Bottom Controls)
+           ========================================================================== -->
+  <div id="presentation-hud">
+    <!-- Top Progress Bar -->
+    <div class="hud-progress-bar">
+      <div id="hud-progress-fill" class="hud-progress-fill">
+      </div>
+    </div>
+    <!-- Top Floating Header -->
+    <div class="hud-top-bar hud-toggleable">
+      <div class="hud-brand">
+        <span class="hud-pulse-dot">
+        </span>
+        <span style="font-size: 0.7rem;">
+          Department of Pathology,
+          <br>
+          Stavanger University Hospital
+        </span>
+      </div>
+      <div class="hud-top-right">
+        <div class="hud-center-title">
+          <strong id="hud-chapter-num">
+            01 / 13
+          </strong>
+          <span id="hud-chapter-title">
+            Presentation Title
+          </span>
+        </div>
+        <div class="hud-controls-top">
+          <button id="hud-btn-shortcuts" class="hud-btn" title="View Keyboard Shortcuts (or press ?)">
+            <span>
+              ⌨
+            </span>
+            <span>
+              Help
+            </span>
+          </button>
+          <button id="hud-btn-fullscreen" class="hud-btn" title="Toggle Fullscreen (F)">
+            <span>
+              ⛶
+            </span>
+            <span>
+              Fullscreen
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom HUD Controls -->
+    <div class="hud-bottom-bar">
+      <div class="hud-shortcuts hud-toggleable">
+        <span>
+          <kbd>
+            Space
+          </kbd>
+          /
+          <kbd>
+            →
+          </kbd>
+          Advance
+        </span>
+        <span>
+          <kbd>
+            ←
+          </kbd>
+          Back
+        </span>
+        <span>
+          <kbd>
+            Esc
+          </kbd>
+          3D Overview
+        </span>
+        <span>
+          <kbd>
+            H
+          </kbd>
+          Toggle HUD
+        </span>
+      </div>
+      <!-- Pagination Dots & HUD toggle button (stays visible!) -->
+      <div class="hud-pagination-wrapper">
+        <div id="hud-dots-container" class="hud-pagination-dots">
+          <!-- Rendered by JS -->
+        </div>
+        <button id="hud-btn-toggle-ui" class="hud-toggle-btn" title="Toggle HUD Buttons (H)">
+          <span id="hud-toggle-icon">
+            👁️
+          </span>
+        </button>
+      </div>
+      <div class="hud-nav-buttons hud-toggleable">
+        <button id="hud-nav-prev" class="hud-btn">
+          <span>
+            ◀
+          </span>
+          Prev
+        </button>
+        <button id="hud-nav-next" class="hud-btn">
+          Next
+          <span>
+            ▶
+          </span>
+        </button>
+        <button id="hud-nav-overview" class="hud-btn active">
+          <span>
+            🗺️
+          </span>
+          3D Slide Map
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- ==========================================================================
+           IMPRESS.JS 3D CANVAS & SLIDES (13-Slide Starter Deck)
+           ========================================================================== -->
+  <main id="impress" data-transition-duration="1000" data-width="1920" data-height="1080">
+    <!-- SLIDE 01: Title & presenters. Replace bracketed text; retain the classes for this layout. -->
+    <section id="intro" data-hud-title="Title &amp; Departmental Framing" class="step" data-x="0" data-y="0" data-z="0"
+      data-rotate-y="0">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">
+            🏥 Stavanger University Hospital
+          </span>
+          <span class="eyebrow purple">
+            Department of Pathology
+          </span>
+          <span class="dna-badge">
+            December 16<sup>th</sup>, 2026
+          </span>
+        </div>
+        <h1 class="intro-hero-title">
+          Large Gene Panels: <span class="gradient-text">Advantages &amp; Disadvantages</span>
+          <br><span style="font-size: 42px; font-weight: 600; color: #94a3b8;">from Bench to Bioinformatics</span>
+        </h1>
+        <div class="presenter-badge-container">
+          <div class="presenter-pill bench">
+            <span>
+              🔬
+            </span>
+            <span>
+              <strong>
+                Sigund Sperstad, PhD
+              </strong>
+              · Molecular Biologist
+            </span>
+          </div>
+          <div class="presenter-pill bioinfo">
+            <span>
+              💻
+            </span>
+            <span>
+              <strong>
+                Håvard Molversmyr, MSc
+              </strong>
+              · Bioinformatician
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card highlight-magenta">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [Perspective one]
+          </div>
+          <div class="card-body">
+            [Introduce the first perspective in two short sentences.]
+          </div>
+        </div>
+        <div class="card highlight-cyan">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [Perspective two]
+          </div>
+          <div class="card-body">
+            [Introduce the second perspective and its relevance.]
+          </div>
+        </div>
+      </div>
+      <div class="callout info" style="margin-top: 18px;">
+        <span class="callout-icon">
+          💡
+        </span>
+        <div class="callout-content">
+          <strong>
+            [Purpose]
+          </strong>
+          [Explain what the audience should understand by the end.]
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 02: Two-column cards. Replace bracketed text; retain the classes for this layout. -->
+    <section id="two-cards" data-hud-title="Two-Column Cards" class="step" data-x="1800" data-y="-200" data-z="-500"
+      data-rotate-y="-25">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">
+            [Section label]
+          </span>
+          <span class="pill pill-cyan">
+            [Topic label]
+          </span>
+        </div>
+        <h2 class="slide-title">
+          [Slide title]:
+          <span class="gradient-text">
+            [Main subject]
+          </span>
+        </h2>
+        <p class="slide-subtitle">
+          [Add a short introduction or the question this slide addresses.]
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="card highlight-cyan">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [First topic]
+          </div>
+          <div class="card-body">
+            <ul class="card-list">
+              <li>
+                <strong>
+                  [Key point]:
+                </strong>
+                [Add one supporting sentence.]
+              </li>
+              <li>
+                <strong>
+                  [Second point]:
+                </strong>
+                [Add an example or implication.]
+              </li>
+              <li>
+                <strong>
+                  [Third point]:
+                </strong>
+                [Add a limitation or next step.]
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card highlight-magenta">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [Second topic]
+          </div>
+          <div class="card-body">
+            <ul class="card-list magenta">
+              <li>
+                <strong>
+                  [Key point]:
+                </strong>
+                [Add one supporting sentence.]
+              </li>
+              <li>
+                <strong>
+                  [Second point]:
+                </strong>
+                [Add an example or implication.]
+              </li>
+              <li>
+                <strong>
+                  [Third point]:
+                </strong>
+                [Add a limitation or next step.]
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="callout info" style="margin-top: 18px;">
+        <span class="callout-icon">
+          💡
+        </span>
+        <div class="callout-content">
+          <strong>
+            [Main takeaway]
+          </strong>
+          [Write the one sentence the audience should remember.]
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 03: Three-column cards. Replace bracketed text; retain the classes for this layout. -->
+    <section id="three-cards" data-hud-title="Three-Column Cards" class="step" data-x="3600" data-y="0" data-z="-1000"
+      data-rotate-y="-50">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow magenta">
+            [Section label]
+          </span>
+          <span class="pill pill-magenta">
+            [Topic label]
+          </span>
+        </div>
+        <h2 class="slide-title">
+          [Slide title]:
+          <span class="gradient-text">
+            [Main subject]
+          </span>
+        </h2>
+        <p class="slide-subtitle">
+          [Add a short introduction or the question this slide addresses.]
+        </p>
+      </div>
+      <div class="grid-3">
+        <div class="card highlight-cyan">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [Topic 1]
+          </div>
+          <div class="card-body">
+            <p>
+              [Describe this topic in one or two sentences.]
+            </p>
+            <ul class="card-list">
+              <li>
+                <strong>
+                  [Key point]:
+                </strong>
+                [Add one supporting sentence.]
+              </li>
+              <li>
+                <strong>
+                  [Second point]:
+                </strong>
+                [Add an example or implication.]
+              </li>
+              <li>
+                <strong>
+                  [Third point]:
+                </strong>
+                [Add a limitation or next step.]
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card highlight-magenta">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [Topic 2]
+          </div>
+          <div class="card-body">
+            <p>
+              [Describe this topic in one or two sentences.]
+            </p>
+            <ul class="card-list magenta">
+              <li>
+                <strong>
+                  [Key point]:
+                </strong>
+                [Add one supporting sentence.]
+              </li>
+              <li>
+                <strong>
+                  [Second point]:
+                </strong>
+                [Add an example or implication.]
+              </li>
+              <li>
+                <strong>
+                  [Third point]:
+                </strong>
+                [Add a limitation or next step.]
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card highlight-purple">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [Topic 3]
+          </div>
+          <div class="card-body">
+            <p>
+              [Describe this topic in one or two sentences.]
+            </p>
+            <ul class="card-list purple">
+              <li>
+                <strong>
+                  [Key point]:
+                </strong>
+                [Add one supporting sentence.]
+              </li>
+              <li>
+                <strong>
+                  [Second point]:
+                </strong>
+                [Add an example or implication.]
+              </li>
+              <li>
+                <strong>
+                  [Third point]:
+                </strong>
+                [Add a limitation or next step.]
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="callout warning" style="margin-top: 18px;">
+        <span class="callout-icon">
+          ⚠️
+        </span>
+        <div class="callout-content">
+          <strong>
+            [Important limitation]
+          </strong>
+          [Explain the qualification that affects all three topics.]
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 04: Metrics & supporting cards. Replace bracketed text; retain the classes for this layout. -->
+    <section id="four-metrics" data-hud-title="Four-Metric Grid" class="step" data-x="4800" data-y="1200" data-z="-800"
+      data-rotate-y="-35">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">
+            [Section label]
+          </span>
+          <span class="pill pill-cyan">
+            [Topic label]
+          </span>
+        </div>
+        <h2 class="slide-title">
+          [Slide title]:
+          <span class="gradient-text">
+            [Main subject]
+          </span>
+        </h2>
+        <p class="slide-subtitle">
+          [Add a short introduction or the question this slide addresses.]
+        </p>
+      </div>
+      <div class="metric-hero-grid">
+        <div class="metric-box">
+          <div class="metric-number ">
+            [—]
+          </div>
+          <div class="metric-label">
+            [Metric 1]
+          </div>
+          <div class="metric-sub">
+            [Unit / period / source]
+          </div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-number magenta">
+            [—]
+          </div>
+          <div class="metric-label">
+            [Metric 2]
+          </div>
+          <div class="metric-sub">
+            [Unit / period / source]
+          </div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-number purple">
+            [—]
+          </div>
+          <div class="metric-label">
+            [Metric 3]
+          </div>
+          <div class="metric-sub">
+            [Unit / period / source]
+          </div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-number green">
+            [—]
+          </div>
+          <div class="metric-label">
+            [Metric 4]
+          </div>
+          <div class="metric-sub">
+            [Unit / period / source]
+          </div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card highlight-cyan">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [What the numbers show]
+          </div>
+          <div class="card-body">
+            [Describe the comparison or pattern. Include the population, denominator and time
+            period.]
+          </div>
+        </div>
+        <div class="card highlight-green">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [How to interpret them]
+          </div>
+          <div class="card-body">
+            [Add the context and uncertainty needed to interpret these numbers.]
+          </div>
+        </div>
+      </div>
+      <div class="callout info" style="margin-top: 18px;">
+        <span class="callout-icon">
+          💡
+        </span>
+        <div class="callout-content">
+          <strong>
+            [Source]
+          </strong>
+          [Reference and date. Replace every metric placeholder before use.]
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 05: Comparison table. Replace bracketed text; retain the classes for this layout. -->
+    <section id="comparison" data-hud-title="Comparison Table" class="step" data-x="4600" data-y="2800" data-z="-300"
+      data-rotate-y="0">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">
+            [Section label]
+          </span>
+          <span class="pill pill-cyan">
+            [Topic label]
+          </span>
+        </div>
+        <h2 class="slide-title">
+          [Slide title]:
+          <span class="gradient-text">
+            [Main subject]
+          </span>
+        </h2>
+        <p class="slide-subtitle">
+          [Add a short introduction or the question this slide addresses.]
+        </p>
+      </div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>
+              [Criterion]
+            </th>
+            <th>
+              [Option A]
+            </th>
+            <th>
+              [Option B]
+            </th>
+            <th>
+              [Option C]
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>
+                [Criterion 1]
+              </strong>
+            </td>
+            <td>
+              [Value / description]
+            </td>
+            <td>
+              [Value / description]
+            </td>
+            <td>
+              [Value / description]
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                [Criterion 2]
+              </strong>
+            </td>
+            <td>
+              [Value / description]
+            </td>
+            <td class="highlight-col">
+              [Value / description]
+            </td>
+            <td>
+              [Value / description]
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                [Criterion 3]
+              </strong>
+            </td>
+            <td>
+              [Value / description]
+            </td>
+            <td>
+              [Value / description]
+            </td>
+            <td>
+              [Value / description]
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                [Criterion 4]
+              </strong>
+            </td>
+            <td>
+              [Value / description]
+            </td>
+            <td>
+              [Value / description]
+            </td>
+            <td>
+              [Value / description]
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                [Criterion 5]
+              </strong>
+            </td>
+            <td>
+              [Value / description]
+            </td>
+            <td>
+              [Value / description]
+            </td>
+            <td>
+              [Value / description]
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout info" style="margin-top: 18px;">
+        <span class="callout-icon">
+          💡
+        </span>
+        <div class="callout-content">
+          <strong>
+            [Interpretation]
+          </strong>
+          [Explain the most important difference and the evidence supporting it.]
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 06: Three specification cards. Replace bracketed text; retain the classes for this layout. -->
+    <section id="specifications" data-hud-title="Specification Cards" class="step" data-x="3600" data-y="4000"
+      data-z="200" data-rotate-y="30">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow purple">
+            [Section label]
+          </span>
+          <span class="pill pill-purple">
+            [Topic label]
+          </span>
+        </div>
+        <h2 class="slide-title">
+          [Slide title]:
+          <span class="gradient-text">
+            [Main subject]
+          </span>
+        </h2>
+        <p class="slide-subtitle">
+          [Add a short introduction or the question this slide addresses.]
+        </p>
+      </div>
+      <div class="grid-3">
+        <div class="card highlight-cyan">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [Option 1]
+          </div>
+          <div class="card-body">
+            <table class="spec-table-compact">
+              <tr>
+                <td class="spec-name">
+                  [Property 1]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 2]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 3]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 4]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 5]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+            </table>
+            <div style="margin-top: 14px;">
+              <span class="pill pill-cyan">
+                [Status / category]
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="card highlight-magenta">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [Option 2]
+          </div>
+          <div class="card-body">
+            <table class="spec-table-compact">
+              <tr>
+                <td class="spec-name">
+                  [Property 1]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 2]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 3]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 4]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 5]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+            </table>
+            <div style="margin-top: 14px;">
+              <span class="pill pill-magenta">
+                [Status / category]
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="card highlight-purple">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [Option 3]
+          </div>
+          <div class="card-body">
+            <table class="spec-table-compact">
+              <tr>
+                <td class="spec-name">
+                  [Property 1]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 2]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 3]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 4]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+              <tr>
+                <td class="spec-name">
+                  [Property 5]
+                </td>
+                <td>
+                  [Value / detail]
+                </td>
+              </tr>
+            </table>
+            <div style="margin-top: 14px;">
+              <span class="pill pill-purple">
+                [Status / category]
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="callout warning" style="margin-top: 18px;">
+        <span class="callout-icon">
+          ⚠️
+        </span>
+        <div class="callout-content">
+          <strong>
+            [Comparison scope]
+          </strong>
+          [Specify versions, conditions or assumptions needed for a fair comparison.]
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 07: Two speaker perspectives. Replace bracketed text; retain the classes for this layout. -->
+    <section id="two-perspectives" data-hud-title="Two Speaker Perspectives" class="step" data-x="2000" data-y="4600"
+      data-z="700" data-rotate-y="65">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">
+            [Section label]
+          </span>
+          <span class="pill pill-cyan">
+            [Topic label]
+          </span>
+        </div>
+        <h2 class="slide-title">
+          [Slide title]:
+          <span class="gradient-text">
+            [Main subject]
+          </span>
+        </h2>
+        <p class="slide-subtitle">
+          [Add a short introduction or the question this slide addresses.]
+        </p>
+      </div>
+      <div class="two-speaker-split">
+        <div class="speaker-card bench-focus">
+          <span class="speaker-tag bench">
+            [Perspective 1]
+          </span>
+          <h3 style="color: #ffffff; font-size: 20px; margin-bottom: 12px;">
+            [Perspective heading]
+          </h3>
+          <ul class="card-list magenta">
+            <li>
+              <strong>
+                [Key point]:
+              </strong>
+              [Add one supporting sentence.]
+            </li>
+            <li>
+              <strong>
+                [Second point]:
+              </strong>
+              [Add an example or implication.]
+            </li>
+            <li>
+              <strong>
+                [Third point]:
+              </strong>
+              [Add a limitation or next step.]
+            </li>
+          </ul>
+        </div>
+        <div class="speaker-card bioinfo-focus">
+          <span class="speaker-tag bioinfo">
+            [Perspective 2]
+          </span>
+          <h3 style="color: #ffffff; font-size: 20px; margin-bottom: 12px;">
+            [Perspective heading]
+          </h3>
+          <ul class="card-list">
+            <li>
+              <strong>
+                [Key point]:
+              </strong>
+              [Add one supporting sentence.]
+            </li>
+            <li>
+              <strong>
+                [Second point]:
+              </strong>
+              [Add an example or implication.]
+            </li>
+            <li>
+              <strong>
+                [Third point]:
+              </strong>
+              [Add a limitation or next step.]
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout success" style="margin-top: 18px;">
+        <span class="callout-icon">
+          ✓
+        </span>
+        <div class="callout-content">
+          <strong>
+            [Shared conclusion]
+          </strong>
+          [Connect the two perspectives in one clear sentence.]
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 08: Workflow & responsibilities. Replace bracketed text; retain the classes for this layout. -->
+    <section id="workflow" data-hud-title="Workflow & Responsibilities" class="step" data-x="400" data-y="4400"
+      data-z="1100" data-rotate-y="100">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow green">
+            [Section label]
+          </span>
+          <span class="pill pill-green">
+            [Topic label]
+          </span>
+        </div>
+        <h2 class="slide-title">
+          [Slide title]:
+          <span class="gradient-text">
+            [Main subject]
+          </span>
+        </h2>
+        <p class="slide-subtitle">
+          [Add a short introduction or the question this slide addresses.]
+        </p>
+      </div>
+      <div class="pipeline-diagram">
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">
+            Step 01
+          </span>
+          <div class="pipeline-step-title">
+            [Stage 1]
+          </div>
+          <div class="pipeline-step-desc">
+            [Input, action or output]
+          </div>
+        </div>
+        <div class="pipeline-connector">
+          ➜
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">
+            Step 02
+          </span>
+          <div class="pipeline-step-title">
+            [Stage 2]
+          </div>
+          <div class="pipeline-step-desc">
+            [Input, action or output]
+          </div>
+        </div>
+        <div class="pipeline-connector">
+          ➜
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">
+            Step 03
+          </span>
+          <div class="pipeline-step-title">
+            [Stage 3]
+          </div>
+          <div class="pipeline-step-desc">
+            [Input, action or output]
+          </div>
+        </div>
+        <div class="pipeline-connector">
+          ➜
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">
+            Step 04
+          </span>
+          <div class="pipeline-step-title">
+            [Stage 4]
+          </div>
+          <div class="pipeline-step-desc">
+            [Input, action or output]
+          </div>
+        </div>
+        <div class="pipeline-connector">
+          ➜
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">
+            Step 05
+          </span>
+          <div class="pipeline-step-title">
+            [Stage 5]
+          </div>
+          <div class="pipeline-step-desc">
+            [Input, action or output]
+          </div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top: 20px;">
+        <div class="card highlight-green">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [Inputs & ownership]
+          </div>
+          <div class="card-body">
+            [Describe the input material, responsible person and handoff.]
+          </div>
+        </div>
+        <div class="card highlight-amber">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [Outputs & quality checks]
+          </div>
+          <div class="card-body">
+            [Describe the output, acceptance criteria and escalation route.]
+          </div>
+        </div>
+      </div>
+      <div class="callout info" style="margin-top: 18px;">
+        <span class="callout-icon">
+          💡
+        </span>
+        <div class="callout-content">
+          <strong>
+            [Main takeaway]
+          </strong>
+          [Write the one sentence the audience should remember.]
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 09: Main content & sidebar. Replace bracketed text; retain the classes for this layout. -->
+    <section id="sidebar" data-hud-title="Sidebar Layout" class="step" data-x="-1200" data-y="3600" data-z="1300"
+      data-rotate-y="135">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">
+            [Section label]
+          </span>
+          <span class="pill pill-cyan">
+            [Topic label]
+          </span>
+        </div>
+        <h2 class="slide-title">
+          [Slide title]:
+          <span class="gradient-text">
+            [Main subject]
+          </span>
+        </h2>
+        <p class="slide-subtitle">
+          [Add a short introduction or the question this slide addresses.]
+        </p>
+      </div>
+      <div class="grid-sidebar">
+        <div>
+          <div class="card highlight-cyan">
+            <div class="card-title">
+              <span class="icon">
+                ◆
+              </span>
+              [Main explanation]
+            </div>
+            <div class="card-body">
+              <p>
+                [Use this wider column for the main argument, evidence or example.]
+              </p>
+              <ul class="card-list">
+                <li>
+                  <strong>
+                    [Key point]:
+                  </strong>
+                  [Add one supporting sentence.]
+                </li>
+                <li>
+                  <strong>
+                    [Second point]:
+                  </strong>
+                  [Add an example or implication.]
+                </li>
+                <li>
+                  <strong>
+                    [Third point]:
+                  </strong>
+                  [Add a limitation or next step.]
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card highlight-purple">
+            <div class="card-title">
+              <span class="icon">
+                ◆
+              </span>
+              [Context / definition]
+            </div>
+            <div class="card-body">
+              <p>
+                [Use this narrower column for a definition, limitation or short
+                reference.]
+              </p>
+              <div class="formula-card">
+                [Quantity] = [Input A] / [Input B]
+              </div>
+              <p>
+                [Define the terms and their units.]
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="callout warning" style="margin-top: 18px;">
+        <span class="callout-icon">
+          ⚠️
+        </span>
+        <div class="callout-content">
+          <strong>
+            [Assumption]
+          </strong>
+          [State the assumption that limits the example or calculation.]
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 10: Code window & explanation. Replace bracketed text; retain the classes for this layout. -->
+    <section id="technical-example" data-hud-title="Technical Example" class="step" data-x="-2400" data-y="2400"
+      data-z="1200" data-rotate-y="170">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">
+            [Section label]
+          </span>
+          <span class="pill pill-cyan">
+            [Topic label]
+          </span>
+        </div>
+        <h2 class="slide-title">
+          [Slide title]:
+          <span class="gradient-text">
+            [Main subject]
+          </span>
+        </h2>
+        <p class="slide-subtitle">
+          [Add a short introduction or the question this slide addresses.]
+        </p>
+      </div>
+      <div class="grid-sidebar">
+        <div class="code-window">
+          <div class="code-header">
+            <div class="code-dots">
+              <span class="code-dot red">
+              </span>
+              <span class="code-dot yellow">
+              </span>
+              <span class="code-dot green">
+              </span>
+            </div>
+            <span class="code-title">
+              [Example / filename]
+            </span>
+          </div>
+          <div class="code-body">
+            <pre><span class="tok-comment"># [Replace with code, a report excerpt or pseudocode]</span>
+<span class="tok-kw">[Step one]</span>  <span class="tok-str">[Input]</span>
+<span class="tok-fn">[Operation]</span> <span class="tok-val">[Parameter]</span>
+<span class="tok-tag">[Output]</span>    [Result]
+
+<span class="tok-warn">[Important condition or exception]</span></pre>
+          </div>
+        </div>
+        <div class="card highlight-amber">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [What to notice]
+          </div>
+          <div class="card-body">
+            [Explain the example in language appropriate for the audience.]
+            <ul class="card-list">
+              <li>
+                <strong>
+                  [Key point]:
+                </strong>
+                [Add one supporting sentence.]
+              </li>
+              <li>
+                <strong>
+                  [Second point]:
+                </strong>
+                [Add an example or implication.]
+              </li>
+              <li>
+                <strong>
+                  [Third point]:
+                </strong>
+                [Add a limitation or next step.]
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="callout info" style="margin-top: 18px;">
+        <span class="callout-icon">
+          💡
+        </span>
+        <div class="callout-content">
+          <strong>
+            [Interpretation]
+          </strong>
+          [Explain what the output does and does not establish.]
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 11: Summary cards & category pills. Replace bracketed text; retain the classes for this layout. -->
+    <section id="summary" data-hud-title="Summary Cards" class="step" data-x="-2200" data-y="400" data-z="500"
+      data-rotate-y="245">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow green">
+            [Section label]
+          </span>
+          <span class="pill pill-green">
+            [Topic label]
+          </span>
+        </div>
+        <h2 class="slide-title">
+          [Slide title]:
+          <span class="gradient-text">
+            [Main subject]
+          </span>
+        </h2>
+        <p class="slide-subtitle">
+          [Add a short introduction or the question this slide addresses.]
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="card highlight-magenta">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [1. Takeaway]
+          </div>
+          <div class="card-body">
+            [Write a short, specific conclusion and its practical implication.]
+          </div>
+        </div>
+        <div class="card highlight-cyan">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [2. Takeaway]
+          </div>
+          <div class="card-body">
+            [Write a short, specific conclusion and its practical implication.]
+          </div>
+        </div>
+        <div class="card highlight-purple">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [3. Takeaway]
+          </div>
+          <div class="card-body">
+            [Write a short, specific conclusion and its practical implication.]
+          </div>
+        </div>
+        <div class="card highlight-green">
+          <div class="card-title">
+            <span class="icon">
+              ◆
+            </span>
+            [4. Takeaway]
+          </div>
+          <div class="card-body">
+            [Write a short, specific conclusion and its practical implication.]
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px;">
+        <span class="pill pill-cyan">
+          [Label 1]
+        </span>
+        <span class="pill pill-magenta">
+          [Label 2]
+        </span>
+        <span class="pill pill-purple">
+          [Label 3]
+        </span>
+        <span class="pill pill-green">
+          [Label 4]
+        </span>
+        <span class="pill pill-amber">
+          [Label 5]
+        </span>
+        <span class="pill pill-red">
+          [Label 6]
+        </span>
+      </div>
+      <div class="callout success" style="margin-top: 18px;">
+        <span class="callout-icon">
+          ✓
+        </span>
+        <div class="callout-content">
+          <strong>
+            [Next step]
+          </strong>
+          [Finish with a concrete action or question for discussion.]
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 12: Four-column decisions and paired callouts. Replace bracketed text. -->
+    <section id="decisions" data-hud-title="Four-Column Decisions" class="step" data-x="-1100" data-y="-1500"
+      data-z="200" data-rotate-y="285">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow amber">
+            [Section label]
+          </span>
+          <span class="pill pill-amber">
+            [Decision / next steps]
+          </span>
+        </div>
+        <h2 class="slide-title">
+          [Decision title]:
+          <span class="gradient-text">
+            [Next steps]
+          </span>
+        </h2>
+        <p class="slide-subtitle">
+          [Introduce the options, responsibilities or actions to compare.]
+        </p>
+      </div>
+      <div class="grid-4">
+        <div class="card highlight-cyan">
+          <div class="card-title">
+            [Option 1]
+          </div>
+          <div class="card-body">
+            <p>
+              [Describe this option or action in one short sentence.]
+            </p>
+            <div style="margin-top: 14px;">
+              <span class="pill pill-cyan">
+                [Status]
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="card highlight-magenta">
+          <div class="card-title">
+            [Option 2]
+          </div>
+          <div class="card-body">
+            <p>
+              [Describe this option or action in one short sentence.]
+            </p>
+            <div style="margin-top: 14px;">
+              <span class="pill pill-magenta">
+                [Status]
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="card highlight-purple">
+          <div class="card-title">
+            [Option 3]
+          </div>
+          <div class="card-body">
+            <p>
+              [Describe this option or action in one short sentence.]
+            </p>
+            <div style="margin-top: 14px;">
+              <span class="pill pill-purple">
+                [Status]
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="card highlight-green">
+          <div class="card-title">
+            [Option 4]
+          </div>
+          <div class="card-body">
+            <p>
+              [Describe this option or action in one short sentence.]
+            </p>
+            <div style="margin-top: 14px;">
+              <span class="pill pill-green">
+                [Status]
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top: 20px;">
+        <div class="callout warning">
+          <span class="callout-icon">
+            ⚠️
+          </span>
+          <div class="callout-content">
+            <strong>
+              [Open question]
+            </strong>
+            [Describe the uncertainty or dependency to resolve.]
+          </div>
+        </div>
+        <div class="callout success">
+          <span class="callout-icon">
+            ✓
+          </span>
+          <div class="callout-content">
+            <strong>
+              [Agreed next step]
+            </strong>
+            [Name the action, owner and intended timing.]
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SLIDE 13: Overview & discussion. Replace bracketed text; retain the classes for this layout. -->
+    <section id="overview" data-hud-title="Overview & Discussion" class="step" data-x="1200" data-y="1400" data-z="4800"
+      data-scale="5.2">
+      <div class="eyebrow-container" style="justify-content: center;">
+        <span class="eyebrow purple">
+          [Closing section]
+        </span>
+        <span class="pill pill-cyan">
+          [Questions & discussion]
+        </span>
+      </div>
+      <h2 class="slide-title">
+        [Discussion title]
+      </h2>
+      <p>
+        [Add a closing question or a brief invitation to discuss the topics below.]
+      </p>
+      <div class="overview-grid">
+        <button class="overview-pill-btn" data-target="intro">
+          <span>
+            01 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 1 title]
+          </strong>
+        </button>
+        <button class="overview-pill-btn" data-target="two-cards">
+          <span>
+            02 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 2 title]
+          </strong>
+        </button>
+        <button class="overview-pill-btn" data-target="three-cards">
+          <span>
+            03 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 3 title]
+          </strong>
+        </button>
+        <button class="overview-pill-btn" data-target="four-metrics">
+          <span>
+            04 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 4 title]
+          </strong>
+        </button>
+        <button class="overview-pill-btn" data-target="comparison">
+          <span>
+            05 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 5 title]
+          </strong>
+        </button>
+        <button class="overview-pill-btn" data-target="specifications">
+          <span>
+            06 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 6 title]
+          </strong>
+        </button>
+        <button class="overview-pill-btn" data-target="two-perspectives">
+          <span>
+            07 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 7 title]
+          </strong>
+        </button>
+        <button class="overview-pill-btn" data-target="workflow">
+          <span>
+            08 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 8 title]
+          </strong>
+        </button>
+        <button class="overview-pill-btn" data-target="sidebar">
+          <span>
+            09 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 9 title]
+          </strong>
+        </button>
+        <button class="overview-pill-btn" data-target="technical-example">
+          <span>
+            10 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 10 title]
+          </strong>
+        </button>
+        <button class="overview-pill-btn" data-target="summary">
+          <span>
+            11 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 11 title]
+          </strong>
+        </button>
+        <button class="overview-pill-btn" data-target="decisions">
+          <span>
+            12 · [TOPIC]
+          </span>
+          <strong>
+            [Topic 12 title]
+          </strong>
+        </button>
+      </div>
+    </section>
+  </main>
+  <!-- ==========================================================================
+           SCRIPTS & IMPRESS.JS CONTROLLER
+           ========================================================================== -->
+  <!-- Primary: Vendored impress.js from public/vendor/ -->
+  <script src="./vendor/impress.js">
+  </script>
+  <!-- Fallback if vendor path is not served directly (e.g. static /public or CDN) -->
+  <script>
+    if (typeof impress === 'undefined') {
+      document.write('<script src="./public/vendor/impress.js"><\/script>');
+    }
+  </script>
+  <script>
+    if (typeof impress === 'undefined') {
+      document.write('<script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"><\/script>');
+    }
+  </script>
+  <!-- Presentation HUD Controller -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Initialize impress.js
+      var api = impress();
+      // Initialize after listeners are registered so the opening HUD is populated.
+
+      // Elements
+      var steps = Array.prototype.slice.call(document.querySelectorAll('#impress .step'));
+      var progressBar = document.getElementById('hud-progress-fill');
+      var chapterNum = document.getElementById('hud-chapter-num');
+      var chapterTitle = document.getElementById('hud-chapter-title');
+      var dotsContainer = document.getElementById('hud-dots-container');
+      var btnPrev = document.getElementById('hud-nav-prev');
+      var btnNext = document.getElementById('hud-nav-next');
+      var btnOverview = document.getElementById('hud-nav-overview');
+      var btnFullscreen = document.getElementById('hud-btn-fullscreen');
+      var btnShortcuts = document.getElementById('hud-btn-shortcuts');
+      var hud = document.getElementById('presentation-hud');
+      var btnToggleUI = document.getElementById('hud-btn-toggle-ui');
+      var toggleIcon = document.getElementById('hud-toggle-icon');
+
+      // Slide Metadata mapping
+      var slideInfo = {};
+      steps.forEach(function (step, index) {
+        var heading = step.querySelector('h1, h2');
+        slideInfo[step.id] = {
+          num: String(index + 1).padStart(2, '0') + ' / ' + steps.length,
+          title:
+            step.dataset.hudTitle?.trim() ||
+            (heading ? heading.textContent.replace(/\s+/g, ' ').trim() : step.id)
+        };
+      });
+
+      // Generate pagination dots
+      dotsContainer.innerHTML = '';
+      steps.forEach(function (step, index) {
+        var dot = document.createElement('button');
+        dot.className = 'hud-dot';
+        dot.title = (slideInfo[step.id] ? slideInfo[step.id].title : step.id);
+        dot.setAttribute('data-target', step.id);
+        dot.addEventListener('click', function (e) {
+          e.stopPropagation();
+          api.goto(step);
+        });
+        dotsContainer.appendChild(dot);
+      });
+
+      var dots = Array.prototype.slice.call(dotsContainer.querySelectorAll('.hud-dot'));
+
+      // Click on inactive step navigates to it
+      steps.forEach(function (step) {
+        step.addEventListener('click', function (e) {
+          if (!step.classList.contains('active')) {
+            api.goto(step);
+          }
+        });
+      });
+
+      document.querySelector('.overview-grid').addEventListener('click', function (e) {
+        var button = e.target.closest('.overview-pill-btn');
+        if (button) {
+          e.stopPropagation();
+          api.goto(button.dataset.target);
+        }
+      });
+
+      // Update HUD on step enter
+      document.addEventListener('impress:stepenter', function (event) {
+        var activeStep = event.target;
+        var stepId = activeStep.id;
+        var stepIndex = steps.indexOf(activeStep);
+
+        // Body class for overview mode
+        if (stepId === 'overview') {
+          document.body.classList.add('impress-on-overview');
+          btnOverview.classList.add('active');
+        } else {
+          document.body.classList.remove('impress-on-overview');
+          btnOverview.classList.remove('active');
+        }
+
+        // Update progress bar
+        var progressPercent = ((stepIndex + 1) / steps.length) * 100;
+        progressBar.style.width = progressPercent + '%';
+
+        // Update titles
+        var info = slideInfo[stepId] || { num: (stepIndex + 1) + ' / ' + steps.length, title: stepId };
+        chapterNum.textContent = info.num;
+        chapterTitle.textContent = info.title;
+
+        // Update dots
+        dots.forEach(function (dot, idx) {
+          if (idx === stepIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      });
+
+      // HUD Button Listeners
+      btnPrev.addEventListener('click', function () { api.prev(); });
+      btnNext.addEventListener('click', function () { api.next(); });
+      btnOverview.addEventListener('click', function () { api.goto('overview'); });
+
+      // Toggle HUD visibility (H key or eye button)
+      function toggleHUD() {
+        var isHidden = hud.classList.toggle('hud-hidden');
+        if (toggleIcon) {
+          toggleIcon.textContent = isHidden ? '👁️' : '✕';
+        }
+        if (btnToggleUI) {
+          btnToggleUI.classList.toggle('active', isHidden);
+          btnToggleUI.title = isHidden ? 'Show HUD Buttons (H)' : 'Hide HUD Buttons (H)';
+        }
+      }
+
+      if (btnToggleUI) {
+        btnToggleUI.addEventListener('click', function (e) {
+          e.stopPropagation();
+          toggleHUD();
+        });
+      }
+
+      // Fullscreen Toggle
+      btnFullscreen.addEventListener('click', function () {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(function (err) {
+            console.error('Error attempting to enable fullscreen:', err.message);
+          });
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      });
+
+      // Shortcuts Modal / Alert
+      btnShortcuts.addEventListener('click', function () {
+        alert(
+          'Presentation Controls:\n\n' +
+          '• Space / Right Arrow / PageDown: Next slide\n' +
+          '• Left Arrow / PageUp: Previous slide\n' +
+          '• Esc / O: 3D Galaxy Overview\n' +
+          '• H: Toggle HUD buttons (Hide / Show)\n' +
+          '• Click any card in 3D space: Fly camera to card\n' +
+          '• Click dots on bottom bar: Quick jump to topic\n' +
+          '• F: Fullscreen mode'
+        );
+      });
+
+      // Keyboard shortcut for Overview (Esc or O), Fullscreen (F), and Toggle HUD (H)
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.key === 'o' || e.key === 'O') {
+          api.goto('overview');
+        } else if (e.key === 'f' || e.key === 'F') {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(function () { });
+          } else {
+            document.exitFullscreen().catch(function () { });
+          }
+        } else if (e.key === '?') {
+          e.preventDefault();
+          btnShortcuts.click();
+        } else if (e.key === 'h' || e.key === 'H') {
+          toggleHUD();
+        }
+      });
+      api.init();
+    });
+  </script>
+</body>
+
 </html>
