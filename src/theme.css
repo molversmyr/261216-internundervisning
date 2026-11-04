@@ -1171,6 +1171,19 @@ body.impress-on-overview .step:hover {
   margin-bottom: 4px;
 }
 
+/* Keep the overview itself fully opaque as an element. */
+body.impress-on-overview #overview {
+  opacity: 0.9 !important;
+  background: rgba(10, 16, 30, 0.96) !important;
+}
+
+/* Dim other slides, including when the pointer passes over them. */
+/* body.impress-on-overview .step:not(#overview),
+body.impress-on-overview .step:not(#overview):hover {
+  opacity: 0.08 !important;
+  pointer-events: none;
+} */
+
 /* ==========================================================================
    ANIMATIONS & 3D TILT FLAIRS
    ========================================================================== */
