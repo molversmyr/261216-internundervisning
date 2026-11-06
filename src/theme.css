@@ -836,7 +836,7 @@ body.impress-on-overview .step:hover {
   align-items: flex-start;
   justify-content: space-between;
   padding: 16px 28px;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .hud-brand {
@@ -853,6 +853,8 @@ body.impress-on-overview .step:hover {
 }
 
 .hud-top-right {
+  /* Only the actual header controls receive clicks, not the empty row. */
+  pointer-events: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -1349,4 +1351,228 @@ body.impress-on-overview .step:not(#overview):hover {
 .formula-card .math-hl {
   color: var(--cyan);
   font-weight: 700;
+}
+
+/* Hidden header controls must not intercept clicks either. */
+#presentation-hud.hud-hidden .hud-top-right {
+  pointer-events: none;
+}
+
+/* Reusable layout classes formerly written as HTML style attributes. */
+.hud-department { font-size: 0.7rem; }
+.intro-hero-subtitle { font-size: 42px; font-weight: 600; color: var(--text-muted); }
+.callout-compact { margin-top: 18px; }
+.card-detail { margin-top: 14px; }
+.speaker-heading { color: #ffffff; font-size: 20px; margin-bottom: 12px; }
+.section-gap { margin-top: 20px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.eyebrow-centered { justify-content: center; }
+.bio-branch-caption { color: var(--text-muted); font-size: 18px; }
+
+/* Bioinformatics deck: diagrams, terminal examples and presenter notes. */
+.bio-figure {
+  display: block;
+  width: 100%;
+  height: 285px;
+  object-fit: contain;
+  margin: 12px 0;
+}
+
+.bioinf-deck .card-body {
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+.bioinf-deck .card-body p+p {
+  margin-top: 20px;
+}
+
+.bioinf-deck .callout {
+  font-size: 20px;
+}
+
+.bio-flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 42px 0;
+}
+
+.bio-flow span {
+  font-size: 25px;
+  line-height: 1.4;
+  color: var(--cyan);
+  border-bottom: 3px solid var(--cyan);
+  padding: 14px 4px;
+}
+
+.bio-flow b {
+  color: var(--text-muted);
+  font-size: 30px;
+}
+
+.bio-branches {
+  display: flex;
+  gap: 35px;
+  justify-content: center;
+  padding: 30px 0;
+  border-top: 1px solid var(--border-purple);
+}
+
+.bio-branches span {
+  font-size: 22px;
+  color: var(--magenta);
+}
+
+.bio-report {
+  border: 1px solid var(--border-bright);
+  border-left: 5px solid var(--cyan);
+  padding: 24px 28px;
+  background: rgba(0, 242, 254, .025);
+}
+
+.bio-report-top {
+  font: 14px var(--font-mono);
+  color: var(--cyan);
+  margin-bottom: 16px;
+}
+
+.bio-report h3 {
+  font-size: 22px;
+  margin: 12px 0 4px;
+}
+
+.bio-report p {
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.bio-side-title {
+  font-size: 30px;
+  margin: 20px 0;
+}
+
+.bio-lead {
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0 0 25px;
+}
+
+.step.active .bio-figure {
+  animation: bio-appear .8s ease both;
+}
+
+@keyframes bio-appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+#bio-notes {
+  position: fixed;
+  inset: 12vh 13vw auto;
+  width: 74vw;
+  max-height: 75vh;
+  overflow: auto;
+  padding: 32px;
+  border: 1px solid var(--cyan);
+  border-radius: 18px;
+  background: #0d1626;
+  color: var(--text-main);
+  font: 20px/1.6 var(--font-sans);
+  z-index: 3000;
+  margin: 0;
+}
+
+#bio-notes::backdrop {
+  background: rgba(0, 0, 0, .75);
+}
+
+#bio-notes a {
+  color: var(--cyan)
+}
+
+#bio-notes p {
+  margin-top: 16px
+}
+
+#bio-notes button {
+  float: right
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.bio-terminal {
+  margin: 0;
+  padding: 24px 28px;
+  border: 1px solid var(--border-bright);
+  border-radius: 16px;
+  background: #060b15;
+  color: #e2e8f0;
+  font: 18px/1.7 var(--font-mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.bio-terminal .comment {
+  color: #94a3b8;
+}
+
+.bio-terminal .command {
+  color: var(--cyan);
+}
+
+.bio-terminal .result {
+  color: #6ee7b7;
+}
+
+.bio-compute-caption {
+  color: var(--text-muted);
+  font-size: 17px;
+  margin: 14px 0 20px;
+}
+
+.bio-compute-steps {
+  margin: 0;
+  padding-left: 27px;
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.bio-compute-steps li {
+  padding-left: 6px;
+  margin-bottom: 18px;
+}
+
+.bio-compute-steps strong {
+  color: var(--cyan);
+}
+
+.bio-compute .slide-header {
+  margin-bottom: 24px;
+}
+
+.bioinf-deck #overview .overview-grid {
+  gap: 12px;
+}
+
+.bioinf-deck #overview .overview-pill-btn {
+  padding: 12px 14px;
 }

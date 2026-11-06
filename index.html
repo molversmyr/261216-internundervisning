@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>
-    Internundervisning - Presentation Template
+    Bioinformatics · The specimen journey
   </title>
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,9 +15,11 @@
     rel="stylesheet">
   <!-- Main Presentation Theme -->
   <link rel="stylesheet" href="./src/theme.css">
+
 </head>
 
-<body class="impress-not-supported">
+<body class="impress-not-supported bioinf-deck">
+  <noscript>This slide deck requires JavaScript. Enable JavaScript to use the presentation.</noscript>
   <!-- Fallback message for unsupported / legacy browsers -->
   <div class="fallback-message">
     <h2>
@@ -42,7 +44,7 @@
       <div class="hud-brand">
         <span class="hud-pulse-dot">
         </span>
-        <span style="font-size: 0.7rem;">
+        <span class="hud-department">
           Department of Pathology,
           <br>
           Stavanger University Hospital
@@ -51,7 +53,7 @@
       <div class="hud-top-right">
         <div class="hud-center-title">
           <strong id="hud-chapter-num">
-            01 / 13
+            01 / 17
           </strong>
           <span id="hud-chapter-title">
             Presentation Title
@@ -143,1491 +145,649 @@
     </div>
   </div>
   <!-- ==========================================================================
-           IMPRESS.JS 3D CANVAS & SLIDES (13-Slide Starter Deck)
+           IMPRESS.JS 3D CANVAS & SLIDES (16 content slides + overview · 15 minutes)
            ========================================================================== -->
   <main id="impress" data-transition-duration="1000" data-width="1920" data-height="1080">
-    <!-- SLIDE 01: Title & presenters. Replace bracketed text; retain the classes for this layout. -->
-    <section id="intro" data-hud-title="Title &amp; Departmental Framing" class="step" data-x="0" data-y="0" data-z="0"
-      data-rotate-y="0">
+    <section id="intro" data-hud-title="Bioinformatics in the specimen journey" class="step" data-x="0" data-y="0"
+      data-z="0" data-rotate-y="0">
       <div class="slide-header">
         <div class="eyebrow-container">
-          <span class="eyebrow">
-            🏥 Stavanger University Hospital
-          </span>
-          <span class="eyebrow purple">
-            Department of Pathology
-          </span>
-          <span class="dna-badge">
-            December 16<sup>th</sup>, 2026
-          </span>
+          <span class="eyebrow">Bioinformatics · 01</span>
         </div>
-        <h1 class="intro-hero-title">
-          Large Gene Panels: <span class="gradient-text">Advantages &amp; Disadvantages</span>
-          <br><span style="font-size: 42px; font-weight: 600; color: #94a3b8;">from Bench to Bioinformatics</span>
-        </h1>
-        <div class="presenter-badge-container">
-          <div class="presenter-pill bench">
-            <span>
-              🔬
-            </span>
-            <span>
-              <strong>
-                Sigund Sperstad, PhD
-              </strong>
-              · Molecular Biologist
-            </span>
-          </div>
-          <div class="presenter-pill bioinfo">
-            <span>
-              💻
-            </span>
-            <span>
-              <strong>
-                Håvard Molversmyr, MSc
-              </strong>
-              · Bioinformatician
-            </span>
-          </div>
-        </div>
+        <h2 class="slide-title">Bioinformatics in the specimen journey</h2>
+        <p class="slide-subtitle">How sequencing data become findings a pathologist can interpret.</p>
       </div>
-      <div class="grid-2">
-        <div class="card highlight-magenta">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [Perspective one]
-          </div>
-          <div class="card-body">
-            [Introduce the first perspective in two short sentences.]
-          </div>
-        </div>
-        <div class="card highlight-cyan">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [Perspective two]
-          </div>
-          <div class="card-body">
-            [Introduce the second perspective and its relevance.]
-          </div>
-        </div>
-      </div>
-      <div class="callout info" style="margin-top: 18px;">
-        <span class="callout-icon">
-          💡
-        </span>
+      <img class="bio-figure" src="./assets/specimen-journey.svg"
+        alt="Biopsy, wet lab, sequencing, bioinformatics, then clinical review.">
+      <div class="callout info">
         <div class="callout-content">
-          <strong>
-            [Purpose]
-          </strong>
-          [Explain what the audience should understand by the end.]
+          <strong>The wet lab makes the measurements. Bioinformatics makes those measurements usable.</strong>One
+          specimen, several kinds of expertise.
         </div>
       </div>
+      <aside class="speaker-notes" hidden data-seconds="25">
+        <h3>Bioinformatics in the specimen journey · 0:25</h3>
+        <p>Open at the handoff from the wet-lab presentation. Bioinformatics uses computing and biological knowledge to
+          turn measurements into evidence. This is a simplified tumour-panel workflow, not a description of a locally
+          verified SOP. Introduce the pathologist at both ends: tissue assessment and clinical interpretation.</p>
+        <p>Source: <a href="https://www.cancer.gov/about-cancer/treatment/types/biomarker-testing-cancer-treatment"
+            target="_blank" rel="noopener">NCI: biomarker testing</a>.</p>
+      </aside>
     </section>
-    <!-- SLIDE 02: Two-column cards. Replace bracketed text; retain the classes for this layout. -->
-    <section id="two-cards" data-hud-title="Two-Column Cards" class="step" data-x="1800" data-y="-200" data-z="-500"
-      data-rotate-y="-25">
+    <section id="two-cards" data-hud-title="Different roles, shared responsibility" class="step" data-x="1800"
+      data-y="-200" data-z="-500" data-rotate-y="-25">
       <div class="slide-header">
         <div class="eyebrow-container">
-          <span class="eyebrow">
-            [Section label]
-          </span>
-          <span class="pill pill-cyan">
-            [Topic label]
-          </span>
+          <span class="eyebrow">Bioinformatics · 02</span>
         </div>
-        <h2 class="slide-title">
-          [Slide title]:
-          <span class="gradient-text">
-            [Main subject]
-          </span>
-        </h2>
-        <p class="slide-subtitle">
-          [Add a short introduction or the question this slide addresses.]
-        </p>
-      </div>
-      <div class="grid-2">
-        <div class="card highlight-cyan">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [First topic]
-          </div>
-          <div class="card-body">
-            <ul class="card-list">
-              <li>
-                <strong>
-                  [Key point]:
-                </strong>
-                [Add one supporting sentence.]
-              </li>
-              <li>
-                <strong>
-                  [Second point]:
-                </strong>
-                [Add an example or implication.]
-              </li>
-              <li>
-                <strong>
-                  [Third point]:
-                </strong>
-                [Add a limitation or next step.]
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="card highlight-magenta">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [Second topic]
-          </div>
-          <div class="card-body">
-            <ul class="card-list magenta">
-              <li>
-                <strong>
-                  [Key point]:
-                </strong>
-                [Add one supporting sentence.]
-              </li>
-              <li>
-                <strong>
-                  [Second point]:
-                </strong>
-                [Add an example or implication.]
-              </li>
-              <li>
-                <strong>
-                  [Third point]:
-                </strong>
-                [Add a limitation or next step.]
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="callout info" style="margin-top: 18px;">
-        <span class="callout-icon">
-          💡
-        </span>
-        <div class="callout-content">
-          <strong>
-            [Main takeaway]
-          </strong>
-          [Write the one sentence the audience should remember.]
-        </div>
-      </div>
-    </section>
-    <!-- SLIDE 03: Three-column cards. Replace bracketed text; retain the classes for this layout. -->
-    <section id="three-cards" data-hud-title="Three-Column Cards" class="step" data-x="3600" data-y="0" data-z="-1000"
-      data-rotate-y="-50">
-      <div class="slide-header">
-        <div class="eyebrow-container">
-          <span class="eyebrow magenta">
-            [Section label]
-          </span>
-          <span class="pill pill-magenta">
-            [Topic label]
-          </span>
-        </div>
-        <h2 class="slide-title">
-          [Slide title]:
-          <span class="gradient-text">
-            [Main subject]
-          </span>
-        </h2>
-        <p class="slide-subtitle">
-          [Add a short introduction or the question this slide addresses.]
-        </p>
+        <h2 class="slide-title">Different roles, shared responsibility</h2>
+        <p class="slide-subtitle">Job boundaries vary between laboratories; quality connects the whole team.</p>
       </div>
       <div class="grid-3">
-        <div class="card highlight-cyan">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [Topic 1]
-          </div>
+        <div class="card highlight-magenta">
+          <div class="card-title">Molecular biology</div>
           <div class="card-body">
-            <p>
-              [Describe this topic in one or two sentences.]
-            </p>
-            <ul class="card-list">
-              <li>
-                <strong>
-                  [Key point]:
-                </strong>
-                [Add one supporting sentence.]
-              </li>
-              <li>
-                <strong>
-                  [Second point]:
-                </strong>
-                [Add an example or implication.]
-              </li>
-              <li>
-                <strong>
-                  [Third point]:
-                </strong>
-                [Add a limitation or next step.]
-              </li>
-            </ul>
+            <p>Handle the specimen and prepare DNA/RNA.</p>
+            <p>Make a library, sequence it, and assess laboratory quality.</p>
           </div>
         </div>
-        <div class="card highlight-magenta">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [Topic 2]
-          </div>
+        <div class="card highlight-cyan">
+          <div class="card-title">Bioinformatics</div>
           <div class="card-body">
-            <p>
-              [Describe this topic in one or two sentences.]
-            </p>
-            <ul class="card-list magenta">
-              <li>
-                <strong>
-                  [Key point]:
-                </strong>
-                [Add one supporting sentence.]
-              </li>
-              <li>
-                <strong>
-                  [Second point]:
-                </strong>
-                [Add an example or implication.]
-              </li>
-              <li>
-                <strong>
-                  [Third point]:
-                </strong>
-                [Add a limitation or next step.]
-              </li>
-            </ul>
+            <p>Process the files and assess data quality.</p>
+            <p>Find changes, attach context, and keep the analysis reproducible.</p>
           </div>
         </div>
         <div class="card highlight-purple">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [Topic 3]
-          </div>
+          <div class="card-title">Clinical interpretation</div>
           <div class="card-body">
-            <p>
-              [Describe this topic in one or two sentences.]
-            </p>
-            <ul class="card-list purple">
-              <li>
-                <strong>
-                  [Key point]:
-                </strong>
-                [Add one supporting sentence.]
-              </li>
-              <li>
-                <strong>
-                  [Second point]:
-                </strong>
-                [Add an example or implication.]
-              </li>
-              <li>
-                <strong>
-                  [Third point]:
-                </strong>
-                [Add a limitation or next step.]
-              </li>
-            </ul>
+            <p>Review findings alongside tissue and clinical information.</p>
+            <p>Pathologists and the treating team use the report to support decisions.</p>
           </div>
         </div>
       </div>
-      <div class="callout warning" style="margin-top: 18px;">
-        <span class="callout-icon">
-          ⚠️
-        </span>
+      <div class="callout info">
         <div class="callout-content">
-          <strong>
-            [Important limitation]
-          </strong>
-          [Explain the qualification that affects all three topics.]
+          <strong>Shared work:</strong> Investigate unexpected results, resolve quality problems, and agree what can be
+          reported.
         </div>
       </div>
+      <aside class="speaker-notes" hidden data-seconds="40">
+        <h3>Different roles, shared responsibility · 0:40</h3>
+        <p>Avoid presenting the professions as isolated boxes. Molecular biologists may also review variants, and
+          bioinformaticians help with assay validation and troubleshooting. Local roles and report authorization vary.
+          The treating team makes treatment decisions; software does not prescribe.</p>
+        <p>
+        </p>
+      </aside>
     </section>
-    <!-- SLIDE 04: Metrics & supporting cards. Replace bracketed text; retain the classes for this layout. -->
-    <section id="four-metrics" data-hud-title="Four-Metric Grid" class="step" data-x="4800" data-y="1200" data-z="-800"
-      data-rotate-y="-35">
+    <section id="three-cards" data-hud-title="The specimen sets the limits" class="step" data-x="3600" data-y="0"
+      data-z="-1000" data-rotate-y="-50">
       <div class="slide-header">
         <div class="eyebrow-container">
-          <span class="eyebrow">
-            [Section label]
-          </span>
-          <span class="pill pill-cyan">
-            [Topic label]
-          </span>
+          <span class="eyebrow">Bioinformatics · 03</span>
         </div>
-        <h2 class="slide-title">
-          [Slide title]:
-          <span class="gradient-text">
-            [Main subject]
-          </span>
-        </h2>
-        <p class="slide-subtitle">
-          [Add a short introduction or the question this slide addresses.]
-        </p>
+        <h2 class="slide-title">The specimen sets the limits</h2>
+        <p class="slide-subtitle">A good analysis starts before a computer receives any files.</p>
       </div>
-      <div class="metric-hero-grid">
-        <div class="metric-box">
-          <div class="metric-number ">
-            [—]
-          </div>
-          <div class="metric-label">
-            [Metric 1]
-          </div>
-          <div class="metric-sub">
-            [Unit / period / source]
-          </div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-number magenta">
-            [—]
-          </div>
-          <div class="metric-label">
-            [Metric 2]
-          </div>
-          <div class="metric-sub">
-            [Unit / period / source]
-          </div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-number purple">
-            [—]
-          </div>
-          <div class="metric-label">
-            [Metric 3]
-          </div>
-          <div class="metric-sub">
-            [Unit / period / source]
-          </div>
-        </div>
-        <div class="metric-box">
-          <div class="metric-number green">
-            [—]
-          </div>
-          <div class="metric-label">
-            [Metric 4]
-          </div>
-          <div class="metric-sub">
-            [Unit / period / source]
-          </div>
-        </div>
-      </div>
+      <img class="bio-figure" src="./assets/tissue-to-library.svg"
+        alt="Mixed tumour and other cells in tissue, followed by nucleic acid extraction and library preparation.">
       <div class="grid-2">
+        <div class="card highlight-magenta">
+          <div class="card-title">What enters the process</div>
+          <div class="card-body">Selected tissue → extracted DNA/RNA → prepared fragments.</div>
+        </div>
         <div class="card highlight-cyan">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [What the numbers show]
-          </div>
-          <div class="card-body">
-            [Describe the comparison or pattern. Include the population, denominator and time
-            period.]
-          </div>
-        </div>
-        <div class="card highlight-green">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [How to interpret them]
-          </div>
-          <div class="card-body">
-            [Add the context and uncertainty needed to interpret these numbers.]
-          </div>
+          <div class="card-title">Why it matters later</div>
+          <div class="card-body">Too little tumour or damaged material can hide a real change.</div>
         </div>
       </div>
-      <div class="callout info" style="margin-top: 18px;">
-        <span class="callout-icon">
-          💡
-        </span>
-        <div class="callout-content">
-          <strong>
-            [Source]
-          </strong>
-          [Reference and date. Replace every metric placeholder before use.]
-        </div>
-      </div>
+      <aside class="speaker-notes" hidden data-seconds="40">
+        <h3>The specimen sets the limits · 0:40</h3>
+        <p>Connect to the colleague’s wet-lab discussion rather than repeating extraction chemistry. Pathologists assess
+          tissue and tumour content. The circles are a schematic mixture, not histology. A library is prepared material
+          the sequencer can read. DNA and RNA are used according to the assay; not every specimen or test uses both.
+          Computation cannot reliably recover information never measured.</p>
+        <p>Source: <a
+            href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
+            target="_blank" rel="noopener">Illumina: analysis methods</a>.</p>
+      </aside>
     </section>
-    <!-- SLIDE 05: Comparison table. Replace bracketed text; retain the classes for this layout. -->
-    <section id="comparison" data-hud-title="Comparison Table" class="step" data-x="4600" data-y="2800" data-z="-300"
-      data-rotate-y="0">
+    <section id="four-metrics" data-hud-title="Sequencing produces short reads" class="step" data-x="4800" data-y="1200"
+      data-z="-800" data-rotate-y="-35">
       <div class="slide-header">
         <div class="eyebrow-container">
-          <span class="eyebrow">
-            [Section label]
-          </span>
-          <span class="pill pill-cyan">
-            [Topic label]
-          </span>
+          <span class="eyebrow">Bioinformatics · 04</span>
         </div>
-        <h2 class="slide-title">
-          [Slide title]:
-          <span class="gradient-text">
-            [Main subject]
-          </span>
-        </h2>
-        <p class="slide-subtitle">
-          [Add a short introduction or the question this slide addresses.]
-        </p>
+        <h2 class="slide-title">Sequencing produces short reads</h2>
+        <p class="slide-subtitle">A read is a short stretch of DNA or RNA represented by letters.</p>
       </div>
-      <table class="compare-table">
-        <thead>
-          <tr>
-            <th>
-              [Criterion]
-            </th>
-            <th>
-              [Option A]
-            </th>
-            <th>
-              [Option B]
-            </th>
-            <th>
-              [Option C]
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <strong>
-                [Criterion 1]
-              </strong>
-            </td>
-            <td>
-              [Value / description]
-            </td>
-            <td>
-              [Value / description]
-            </td>
-            <td>
-              [Value / description]
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>
-                [Criterion 2]
-              </strong>
-            </td>
-            <td>
-              [Value / description]
-            </td>
-            <td class="highlight-col">
-              [Value / description]
-            </td>
-            <td>
-              [Value / description]
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>
-                [Criterion 3]
-              </strong>
-            </td>
-            <td>
-              [Value / description]
-            </td>
-            <td>
-              [Value / description]
-            </td>
-            <td>
-              [Value / description]
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>
-                [Criterion 4]
-              </strong>
-            </td>
-            <td>
-              [Value / description]
-            </td>
-            <td>
-              [Value / description]
-            </td>
-            <td>
-              [Value / description]
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong>
-                [Criterion 5]
-              </strong>
-            </td>
-            <td>
-              [Value / description]
-            </td>
-            <td>
-              [Value / description]
-            </td>
-            <td>
-              [Value / description]
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="callout info" style="margin-top: 18px;">
-        <span class="callout-icon">
-          💡
-        </span>
+      <img class="bio-figure" src="./assets/sequencing-reads.svg"
+        alt="Short DNA sequences and a simplified four-line FASTQ record with sequence and quality characters.">
+      <div class="callout info">
         <div class="callout-content">
-          <strong>
-            [Interpretation]
-          </strong>
-          [Explain the most important difference and the evidence supporting it.]
+          <strong>FASTQ: letters + a confidence score for each letter.</strong>The sequencer’s signals are converted and
+          assigned to samples before these files reach analysis.
         </div>
       </div>
+      <aside class="speaker-notes" hidden data-seconds="40">
+        <h3>Sequencing produces short reads · 0:40</h3>
+        <p>The FASTQ example is synthetic and deliberately short; actual reads are longer. Explain A, C, G and T as the
+          alphabet of DNA. Do not teach ASCII quality encodings. Paired-end sequencing commonly produces R1 and R2
+          files. Instrument-level output can be BCL on Illumina systems; FASTQ is a useful starting point for this
+          explanation, not the only instrument output.</p>
+        <p>Source: <a
+            href="https://supportassets.illumina.com/informatics/sequencing-data-analysis/sequence-file-formats.html"
+            target="_blank" rel="noopener">Illumina: sequencing file formats</a>.</p>
+      </aside>
     </section>
-    <!-- SLIDE 06: Three specification cards. Replace bracketed text; retain the classes for this layout. -->
-    <section id="specifications" data-hud-title="Specification Cards" class="step" data-x="3600" data-y="4000"
-      data-z="200" data-rotate-y="30">
+    <section id="comparison" data-hud-title="A repeatable workflow, with different branches" class="step" data-x="4600"
+      data-y="2800" data-z="-300" data-rotate-y="0">
       <div class="slide-header">
         <div class="eyebrow-container">
-          <span class="eyebrow purple">
-            [Section label]
-          </span>
-          <span class="pill pill-purple">
-            [Topic label]
-          </span>
+          <span class="eyebrow">Bioinformatics · 05</span>
         </div>
-        <h2 class="slide-title">
-          [Slide title]:
-          <span class="gradient-text">
-            [Main subject]
-          </span>
-        </h2>
-        <p class="slide-subtitle">
-          [Add a short introduction or the question this slide addresses.]
-        </p>
+        <h2 class="slide-title">A repeatable workflow, with different branches</h2>
+        <p class="slide-subtitle">Common foundations support several kinds of analysis.</p>
       </div>
+      <div class="bio-flow">
+        <span>QC &amp;<br>read filtering</span>
+        <b>→</b>
+        <span>Map reads<br>to a reference</span>
+        <b>→</b>
+        <span>Detect<br>changes</span>
+        <b>→</b>
+        <span>Annotate<br>&amp; prioritise</span>
+        <b>→</b>
+        <span>Review<br>&amp; report</span>
+      </div>
+      <p class="bio-branch-caption">Detection branches · selected for the test’s purpose</p>
+      <div class="bio-branches">
+        <span>Single letters / small changes</span>
+        <span>Extra or missing copies</span>
+        <span>Joined genes</span>
+      </div>
+      <div class="callout info">
+        <div class="callout-content">
+          <strong>Standardised within a validated test, not identical for every question.</strong>Quality checks and
+          filtering occur at several stages.
+        </div>
+      </div>
+      <aside class="speaker-notes" hidden data-seconds="55">
+        <h3>A repeatable workflow, with different branches · 0:55</h3>
+        <p>Read the workflow as questions: Can we trust it? Where does it belong? What differs? What is known? What can
+          we report? The three labels below detection are parallel analysis branches, not consecutive steps. Annotation
+          usually follows detection and can also feed filtering and scoring. QC occurs before and after mapping and
+          calling. A validated pipeline fixes methods and acceptance rules for its intended use.</p>
+        <p>Source: <a
+            href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
+            target="_blank" rel="noopener">Illumina: analysis methods</a>.</p>
+      </aside>
+    </section>
+    <section id="specifications" data-hud-title="Quality control: can we trust the evidence?" class="step" data-x="3600"
+      data-y="4000" data-z="200" data-rotate-y="30">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">Bioinformatics · 06</span>
+        </div>
+        <h2 class="slide-title">Quality control: can we trust the evidence?</h2>
+        <p class="slide-subtitle">QC means checking whether the data are suitable for the intended question.</p>
+      </div>
+      <img class="bio-figure" src="./assets/read-quality.svg"
+        alt="Usable reads retained, unreliable ends trimmed, unusable reads excluded; schematic question marks represent uncertainty.">
       <div class="grid-3">
         <div class="card highlight-cyan">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [Option 1]
-          </div>
-          <div class="card-body">
-            <table class="spec-table-compact">
-              <tr>
-                <td class="spec-name">
-                  [Property 1]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 2]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 3]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 4]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 5]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-            </table>
-            <div style="margin-top: 14px;">
-              <span class="pill pill-cyan">
-                [Status / category]
-              </span>
-            </div>
+          <div class="card-title">Read quality</div>
+          <div class="card-body">Are the letters reliable?</div>
+        </div>
+        <div class="card highlight-purple">
+          <div class="card-title">Coverage</div>
+          <div class="card-body">Was each target read enough times?</div>
+        </div>
+        <div class="card highlight-magenta">
+          <div class="card-title">Sample checks</div>
+          <div class="card-body">Is there evidence of contamination or a mix-up?</div>
+        </div>
+      </div>
+      <div class="callout info">
+        <div class="callout-content">A failed region may need a repeat test or a clear limitation in the report.</div>
+      </div>
+      <aside class="speaker-notes" hidden data-seconds="70">
+        <h3>Quality control: can we trust the evidence? · 1:10</h3>
+        <p>Spend time on coverage: reading a region repeatedly provides evidence; simply having a large file is not
+          enough. The question marks are a teaching device, not literal FASTQ quality notation. Trimming/filtering
+          depends on the validated workflow. Contamination checks, identity checks and molecular complexity can be
+          relevant; acceptance thresholds are assay-specific. Never imply that every repeat is independent: duplicates
+          can derive from the same original molecule.</p>
+        <p>Source: <a
+            href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
+            target="_blank" rel="noopener">Illumina: analysis methods</a>.</p>
+      </aside>
+    </section>
+    <section id="two-perspectives" data-hud-title="Mapping: where does each read belong?" class="step" data-x="2000"
+      data-y="4600" data-z="700" data-rotate-y="65">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">Bioinformatics · 07</span>
+        </div>
+        <h2 class="slide-title">Mapping: where does each read belong?</h2>
+        <p class="slide-subtitle">Place short sequences against a reference genome.</p>
+      </div>
+      <img class="bio-figure" src="./assets/read-mapping.svg"
+        alt="Overlapping short reads align along a longer reference sequence.">
+      <div class="grid-2">
+        <div class="card highlight-cyan">
+          <div class="card-title">The analogy</div>
+          <div class="card-body">Put short excerpts back onto the right page of a book.</div>
+        </div>
+        <div class="card highlight-purple">
+          <div class="card-title">The practical result</div>
+          <div class="card-body">An alignment file (BAM/CRAM) records where reads fit.</div>
+        </div>
+      </div>
+      <div class="callout info">
+        <div class="callout-content">Some reads fit several places. Mapping uncertainty affects later findings.</div>
+      </div>
+      <aside class="speaker-notes" hidden data-seconds="55">
+        <h3>Mapping: where does each read belong? · 0:55</h3>
+        <p>Point along the reference and then the overlapping reads. The reference genome is a coordinate guide, not a
+          matched healthy sample from this patient. Repetitive sequences can make placement ambiguous. RNA mapping must
+          account for splicing. Mapping is a common foundation, but its settings and reference depend on the test.</p>
+        <p>Source: <a
+            href="https://supportassets.illumina.com/informatics/sequencing-data-analysis/sequence-file-formats.html"
+            target="_blank" rel="noopener">Illumina: file formats</a>.</p>
+      </aside>
+    </section>
+    <section id="workflow" data-hud-title="Analysis example 1: a small sequence change" class="step" data-x="400"
+      data-y="4400" data-z="1100" data-rotate-y="100">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">Bioinformatics · 08</span>
+        </div>
+        <h2 class="slide-title">Analysis example 1: a small sequence change</h2>
+        <p class="slide-subtitle">Compare the aligned reads with the reference. Simplified teaching example.</p>
+      </div>
+      <img class="bio-figure" src="./assets/small-variant.svg"
+        alt="Five synthetic reads; three have a highlighted T where the reference has an A.">
+      <div class="callout info">
+        <div class="callout-content">
+          <strong>Variant calling:</strong> decide which differences have enough reliable evidence to become candidate
+          findings.
+        </div>
+      </div>
+      <aside class="speaker-notes" hidden data-seconds="85">
+        <h3>Analysis example 1: a small sequence change · 1:25</h3>
+        <p>This is a toy example, not a clinical calling rule or a real variant. Three of five drawn reads differ; that
+          alone is not sufficient evidence. Real calling uses validated rules, adequate coverage, independent support
+          and error models. Small variants include single-letter substitutions and short insertions or deletions. A VCF
+          commonly stores these candidate variants. A difference from the reference is not automatically cancer-related,
+          inherited or clinically relevant.</p>
+        <p>Source: <a
+            href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
+            target="_blank" rel="noopener">Illumina: small variant analysis</a>.</p>
+      </aside>
+    </section>
+    <section id="sidebar" data-hud-title="Analysis examples 2 &amp; 3: copies and fusions" class="step" data-x="-1200"
+      data-y="3600" data-z="1300" data-rotate-y="135">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">Bioinformatics · 09</span>
+        </div>
+        <h2 class="slide-title">Analysis examples 2 &amp; 3: copies and fusions</h2>
+        <p class="slide-subtitle">Different biological changes require different evidence and algorithms.</p>
+      </div>
+      <img class="bio-figure" src="./assets/copies-and-fusions.svg"
+        alt="Schematic extra gene copies compared with a baseline, and gene A joined to gene B.">
+      <div class="grid-2">
+        <div class="card highlight-cyan">
+          <div class="card-title">Copy number analysis</div>
+          <div class="card-body">Measure relative signal across a region.<br>Example question: is a gene amplified?
           </div>
         </div>
         <div class="card highlight-magenta">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [Option 2]
-          </div>
-          <div class="card-body">
-            <table class="spec-table-compact">
-              <tr>
-                <td class="spec-name">
-                  [Property 1]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 2]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 3]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 4]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 5]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-            </table>
-            <div style="margin-top: 14px;">
-              <span class="pill pill-magenta">
-                [Status / category]
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="card highlight-purple">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [Option 3]
-          </div>
-          <div class="card-body">
-            <table class="spec-table-compact">
-              <tr>
-                <td class="spec-name">
-                  [Property 1]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 2]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 3]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 4]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-              <tr>
-                <td class="spec-name">
-                  [Property 5]
-                </td>
-                <td>
-                  [Value / detail]
-                </td>
-              </tr>
-            </table>
-            <div style="margin-top: 14px;">
-              <span class="pill pill-purple">
-                [Status / category]
-              </span>
-            </div>
+          <div class="card-title">Fusion analysis</div>
+          <div class="card-body">Find evidence connecting two genes.<br>Example question: is an RNA fusion present?
           </div>
         </div>
       </div>
-      <div class="callout warning" style="margin-top: 18px;">
-        <span class="callout-icon">
-          ⚠️
-        </span>
-        <div class="callout-content">
-          <strong>
-            [Comparison scope]
-          </strong>
-          [Specify versions, conditions or assumptions needed for a fair comparison.]
-        </div>
+      <div class="callout info">
+        <div class="callout-content">The panel, DNA/RNA input and validation determine which questions the test can
+          answer.</div>
       </div>
+      <aside class="speaker-notes" hidden data-seconds="70">
+        <h3>Analysis examples 2 &amp; 3: copies and fusions · 1:10</h3>
+        <p>The copy illustration shows the concept, not an exact copy count derived from raw read depth. Actual
+          copy-number analysis normalizes signal and considers sample composition and other confounders. Fusion callers
+          seek reads or read pairs supporting a new junction; RNA can show an expressed fusion, while some assays detect
+          rearrangements in DNA. These are parallel branches, not optional improvisation per case. Broader analyses such
+          as tumour mutational burden and microsatellite instability require their own validated methods and suitable
+          assays; mention only if useful.</p>
+        <p>Source: <a
+            href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
+            target="_blank" rel="noopener">Illumina: copy number and fusion workflows</a>.</p>
+      </aside>
     </section>
-    <!-- SLIDE 07: Two speaker perspectives. Replace bracketed text; retain the classes for this layout. -->
-    <section id="two-perspectives" data-hud-title="Two Speaker Perspectives" class="step" data-x="2000" data-y="4600"
-      data-z="700" data-rotate-y="65">
+    <section id="technical-example" data-hud-title="Annotation: give a finding biological context" class="step"
+      data-x="-2400" data-y="2400" data-z="1200" data-rotate-y="170">
       <div class="slide-header">
         <div class="eyebrow-container">
-          <span class="eyebrow">
-            [Section label]
-          </span>
-          <span class="pill pill-cyan">
-            [Topic label]
-          </span>
+          <span class="eyebrow">Bioinformatics · 10</span>
         </div>
-        <h2 class="slide-title">
-          [Slide title]:
-          <span class="gradient-text">
-            [Main subject]
-          </span>
-        </h2>
-        <p class="slide-subtitle">
-          [Add a short introduction or the question this slide addresses.]
-        </p>
+        <h2 class="slide-title">Annotation: give a finding biological context</h2>
+        <p class="slide-subtitle">A coordinate becomes a gene, a possible effect, and a link to existing knowledge.</p>
       </div>
-      <div class="two-speaker-split">
-        <div class="speaker-card bench-focus">
-          <span class="speaker-tag bench">
-            [Perspective 1]
-          </span>
-          <h3 style="color: #ffffff; font-size: 20px; margin-bottom: 12px;">
-            [Perspective heading]
-          </h3>
-          <ul class="card-list magenta">
-            <li>
-              <strong>
-                [Key point]:
-              </strong>
-              [Add one supporting sentence.]
-            </li>
-            <li>
-              <strong>
-                [Second point]:
-              </strong>
-              [Add an example or implication.]
-            </li>
-            <li>
-              <strong>
-                [Third point]:
-              </strong>
-              [Add a limitation or next step.]
-            </li>
-          </ul>
-        </div>
-        <div class="speaker-card bioinfo-focus">
-          <span class="speaker-tag bioinfo">
-            [Perspective 2]
-          </span>
-          <h3 style="color: #ffffff; font-size: 20px; margin-bottom: 12px;">
-            [Perspective heading]
-          </h3>
-          <ul class="card-list">
-            <li>
-              <strong>
-                [Key point]:
-              </strong>
-              [Add one supporting sentence.]
-            </li>
-            <li>
-              <strong>
-                [Second point]:
-              </strong>
-              [Add an example or implication.]
-            </li>
-            <li>
-              <strong>
-                [Third point]:
-              </strong>
-              [Add a limitation or next step.]
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="callout success" style="margin-top: 18px;">
-        <span class="callout-icon">
-          ✓
-        </span>
-        <div class="callout-content">
-          <strong>
-            [Shared conclusion]
-          </strong>
-          [Connect the two perspectives in one clear sentence.]
-        </div>
-      </div>
-    </section>
-    <!-- SLIDE 08: Workflow & responsibilities. Replace bracketed text; retain the classes for this layout. -->
-    <section id="workflow" data-hud-title="Workflow & Responsibilities" class="step" data-x="400" data-y="4400"
-      data-z="1100" data-rotate-y="100">
-      <div class="slide-header">
-        <div class="eyebrow-container">
-          <span class="eyebrow green">
-            [Section label]
-          </span>
-          <span class="pill pill-green">
-            [Topic label]
-          </span>
-        </div>
-        <h2 class="slide-title">
-          [Slide title]:
-          <span class="gradient-text">
-            [Main subject]
-          </span>
-        </h2>
-        <p class="slide-subtitle">
-          [Add a short introduction or the question this slide addresses.]
-        </p>
-      </div>
-      <div class="pipeline-diagram">
-        <div class="pipeline-step">
-          <span class="pipeline-step-num">
-            Step 01
-          </span>
-          <div class="pipeline-step-title">
-            [Stage 1]
-          </div>
-          <div class="pipeline-step-desc">
-            [Input, action or output]
-          </div>
-        </div>
-        <div class="pipeline-connector">
-          ➜
-        </div>
-        <div class="pipeline-step">
-          <span class="pipeline-step-num">
-            Step 02
-          </span>
-          <div class="pipeline-step-title">
-            [Stage 2]
-          </div>
-          <div class="pipeline-step-desc">
-            [Input, action or output]
-          </div>
-        </div>
-        <div class="pipeline-connector">
-          ➜
-        </div>
-        <div class="pipeline-step">
-          <span class="pipeline-step-num">
-            Step 03
-          </span>
-          <div class="pipeline-step-title">
-            [Stage 3]
-          </div>
-          <div class="pipeline-step-desc">
-            [Input, action or output]
-          </div>
-        </div>
-        <div class="pipeline-connector">
-          ➜
-        </div>
-        <div class="pipeline-step">
-          <span class="pipeline-step-num">
-            Step 04
-          </span>
-          <div class="pipeline-step-title">
-            [Stage 4]
-          </div>
-          <div class="pipeline-step-desc">
-            [Input, action or output]
-          </div>
-        </div>
-        <div class="pipeline-connector">
-          ➜
-        </div>
-        <div class="pipeline-step">
-          <span class="pipeline-step-num">
-            Step 05
-          </span>
-          <div class="pipeline-step-title">
-            [Stage 5]
-          </div>
-          <div class="pipeline-step-desc">
-            [Input, action or output]
-          </div>
-        </div>
-      </div>
-      <div class="grid-2" style="margin-top: 20px;">
-        <div class="card highlight-green">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [Inputs & ownership]
-          </div>
-          <div class="card-body">
-            [Describe the input material, responsible person and handoff.]
-          </div>
-        </div>
-        <div class="card highlight-amber">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [Outputs & quality checks]
-          </div>
-          <div class="card-body">
-            [Describe the output, acceptance criteria and escalation route.]
-          </div>
-        </div>
-      </div>
-      <div class="callout info" style="margin-top: 18px;">
-        <span class="callout-icon">
-          💡
-        </span>
-        <div class="callout-content">
-          <strong>
-            [Main takeaway]
-          </strong>
-          [Write the one sentence the audience should remember.]
-        </div>
-      </div>
-    </section>
-    <!-- SLIDE 09: Main content & sidebar. Replace bracketed text; retain the classes for this layout. -->
-    <section id="sidebar" data-hud-title="Sidebar Layout" class="step" data-x="-1200" data-y="3600" data-z="1300"
-      data-rotate-y="135">
-      <div class="slide-header">
-        <div class="eyebrow-container">
-          <span class="eyebrow">
-            [Section label]
-          </span>
-          <span class="pill pill-cyan">
-            [Topic label]
-          </span>
-        </div>
-        <h2 class="slide-title">
-          [Slide title]:
-          <span class="gradient-text">
-            [Main subject]
-          </span>
-        </h2>
-        <p class="slide-subtitle">
-          [Add a short introduction or the question this slide addresses.]
-        </p>
-      </div>
-      <div class="grid-sidebar">
-        <div>
-          <div class="card highlight-cyan">
-            <div class="card-title">
-              <span class="icon">
-                ◆
-              </span>
-              [Main explanation]
-            </div>
-            <div class="card-body">
-              <p>
-                [Use this wider column for the main argument, evidence or example.]
-              </p>
-              <ul class="card-list">
-                <li>
-                  <strong>
-                    [Key point]:
-                  </strong>
-                  [Add one supporting sentence.]
-                </li>
-                <li>
-                  <strong>
-                    [Second point]:
-                  </strong>
-                  [Add an example or implication.]
-                </li>
-                <li>
-                  <strong>
-                    [Third point]:
-                  </strong>
-                  [Add a limitation or next step.]
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="card highlight-purple">
-            <div class="card-title">
-              <span class="icon">
-                ◆
-              </span>
-              [Context / definition]
-            </div>
-            <div class="card-body">
-              <p>
-                [Use this narrower column for a definition, limitation or short
-                reference.]
-              </p>
-              <div class="formula-card">
-                [Quantity] = [Input A] / [Input B]
-              </div>
-              <p>
-                [Define the terms and their units.]
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="callout warning" style="margin-top: 18px;">
-        <span class="callout-icon">
-          ⚠️
-        </span>
-        <div class="callout-content">
-          <strong>
-            [Assumption]
-          </strong>
-          [State the assumption that limits the example or calculation.]
-        </div>
-      </div>
-    </section>
-    <!-- SLIDE 10: Code window & explanation. Replace bracketed text; retain the classes for this layout. -->
-    <section id="technical-example" data-hud-title="Technical Example" class="step" data-x="-2400" data-y="2400"
-      data-z="1200" data-rotate-y="170">
-      <div class="slide-header">
-        <div class="eyebrow-container">
-          <span class="eyebrow">
-            [Section label]
-          </span>
-          <span class="pill pill-cyan">
-            [Topic label]
-          </span>
-        </div>
-        <h2 class="slide-title">
-          [Slide title]:
-          <span class="gradient-text">
-            [Main subject]
-          </span>
-        </h2>
-        <p class="slide-subtitle">
-          [Add a short introduction or the question this slide addresses.]
-        </p>
-      </div>
-      <div class="grid-sidebar">
-        <div class="code-window">
-          <div class="code-header">
-            <div class="code-dots">
-              <span class="code-dot red">
-              </span>
-              <span class="code-dot yellow">
-              </span>
-              <span class="code-dot green">
-              </span>
-            </div>
-            <span class="code-title">
-              [Example / filename]
-            </span>
-          </div>
-          <div class="code-body">
-            <pre><span class="tok-comment"># [Replace with code, a report excerpt or pseudocode]</span>
-<span class="tok-kw">[Step one]</span>  <span class="tok-str">[Input]</span>
-<span class="tok-fn">[Operation]</span> <span class="tok-val">[Parameter]</span>
-<span class="tok-tag">[Output]</span>    [Result]
-
-<span class="tok-warn">[Important condition or exception]</span></pre>
-          </div>
-        </div>
-        <div class="card highlight-amber">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [What to notice]
-          </div>
-          <div class="card-body">
-            [Explain the example in language appropriate for the audience.]
-            <ul class="card-list">
-              <li>
-                <strong>
-                  [Key point]:
-                </strong>
-                [Add one supporting sentence.]
-              </li>
-              <li>
-                <strong>
-                  [Second point]:
-                </strong>
-                [Add an example or implication.]
-              </li>
-              <li>
-                <strong>
-                  [Third point]:
-                </strong>
-                [Add a limitation or next step.]
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="callout info" style="margin-top: 18px;">
-        <span class="callout-icon">
-          💡
-        </span>
-        <div class="callout-content">
-          <strong>
-            [Interpretation]
-          </strong>
-          [Explain what the output does and does not establish.]
-        </div>
-      </div>
-    </section>
-    <!-- SLIDE 11: Summary cards & category pills. Replace bracketed text; retain the classes for this layout. -->
-    <section id="summary" data-hud-title="Summary Cards" class="step" data-x="-2200" data-y="400" data-z="500"
-      data-rotate-y="245">
-      <div class="slide-header">
-        <div class="eyebrow-container">
-          <span class="eyebrow green">
-            [Section label]
-          </span>
-          <span class="pill pill-green">
-            [Topic label]
-          </span>
-        </div>
-        <h2 class="slide-title">
-          [Slide title]:
-          <span class="gradient-text">
-            [Main subject]
-          </span>
-        </h2>
-        <p class="slide-subtitle">
-          [Add a short introduction or the question this slide addresses.]
-        </p>
+      <div class="bio-flow">
+        <span>Candidate<br>change</span>
+        <b>→</b>
+        <span>Which<br>gene?</span>
+        <b>→</b>
+        <span>What effect<br>on its product?</span>
+        <b>→</b>
+        <span>What evidence<br>is available?</span>
       </div>
       <div class="grid-2">
-        <div class="card highlight-magenta">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [1. Takeaway]
-          </div>
-          <div class="card-body">
-            [Write a short, specific conclusion and its practical implication.]
-          </div>
-        </div>
         <div class="card highlight-cyan">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [2. Takeaway]
-          </div>
-          <div class="card-body">
-            [Write a short, specific conclusion and its practical implication.]
-          </div>
+          <div class="card-title">A simplified example</div>
+          <div class="card-body">A letter change → a protein change → published evidence to review.</div>
         </div>
         <div class="card highlight-purple">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [3. Takeaway]
-          </div>
-          <div class="card-body">
-            [Write a short, specific conclusion and its practical implication.]
-          </div>
-        </div>
-        <div class="card highlight-green">
-          <div class="card-title">
-            <span class="icon">
-              ◆
-            </span>
-            [4. Takeaway]
-          </div>
-          <div class="card-body">
-            [Write a short, specific conclusion and its practical implication.]
-          </div>
+          <div class="card-title">Prioritisation and filtering</div>
+          <div class="card-body">Set aside artefacts and assess relevance to the clinical question.</div>
         </div>
       </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px;">
-        <span class="pill pill-cyan">
-          [Label 1]
-        </span>
-        <span class="pill pill-magenta">
-          [Label 2]
-        </span>
-        <span class="pill pill-purple">
-          [Label 3]
-        </span>
-        <span class="pill pill-green">
-          [Label 4]
-        </span>
-        <span class="pill pill-amber">
-          [Label 5]
-        </span>
-        <span class="pill pill-red">
-          [Label 6]
-        </span>
-      </div>
-      <div class="callout success" style="margin-top: 18px;">
-        <span class="callout-icon">
-          ✓
-        </span>
+      <div class="callout info">
         <div class="callout-content">
-          <strong>
-            [Next step]
-          </strong>
-          [Finish with a concrete action or question for discussion.]
+          <strong>Annotation adds information; it does not establish a diagnosis.</strong>Some findings remain
+          uncertain.
         </div>
       </div>
+      <aside class="speaker-notes" hidden data-seconds="70">
+        <h3>Annotation: give a finding biological context · 1:10</h3>
+        <p>Annotation can add gene, transcript, predicted consequence and population frequency. Clinical curation can
+          add disease-specific evidence from knowledge bases and literature. Predictions are not proof of pathogenicity
+          or treatment response. Distinguish read filtering from candidate-variant filtering here. The laboratory uses
+          validated rules and review; evidence sources and versions should be traceable.</p>
+        <p>Source: <a href="https://www.ensembl.org/info/docs/tools/vep/index.html" target="_blank"
+            rel="noopener">Ensembl: Variant Effect Predictor</a>.</p>
+      </aside>
     </section>
-    <!-- SLIDE 12: Four-column decisions and paired callouts. Replace bracketed text. -->
-    <section id="decisions" data-hud-title="Four-Column Decisions" class="step" data-x="-1100" data-y="-1500"
+    <section id="computer-input" class="step bio-compute" data-hud-title="At the computer: inspect the inputs"
+      data-x="-4200" data-y="4000" data-z="0" data-rotate-y="0">
+      <div class="slide-header">
+        <div class="eyebrow-container"><span class="eyebrow">Bioinformatics · 11</span></div>
+        <h2 class="slide-title">At the computer: inspect the inputs</h2>
+        <p class="slide-subtitle">The same specimen now appears as files and a sample identifier.</p>
+      </div>
+      <div class="grid-sidebar">
+        <pre class="bio-terminal"><code><span class="comment"># Inspect a fictional sequencing run</span>
+<span class="command">$ cd run_042</span>
+<span class="command">$ ls</span>
+<span class="result">S001_R1.fastq.gz   S001_R2.fastq.gz   samples.csv</span>
+<span class="command">$ head -n 2 samples.csv</span>
+<span class="result">sample_id,read1,read2</span>
+<span class="result">S001,S001_R1.fastq.gz,S001_R2.fastq.gz</span></code></pre>
+        <div>
+          <h3 class="bio-side-title">A terminal is a text interface</h3>
+          <ol class="bio-compute-steps">
+            <li><strong>List</strong> the input files.</li>
+            <li><strong>Match</strong> each sample ID to its files.</li>
+            <li><strong>Record</strong> what will enter the analysis.</li>
+          </ol>
+        </div>
+      </div>
+      <p class="bio-compute-caption">Illustrative commands and identifiers throughout these four slides; no patient data
+        or live job.</p>
+      <div class="callout info">
+        <div class="callout-content">A sample sheet is the link between the specimen ID and the correct sequencing
+          files.</div>
+      </div>
+      <aside class="speaker-notes" hidden data-seconds="60">
+        <h3>At the computer: inspect the inputs · 1:00</h3>
+        <p>Explain the dollar sign as the terminal prompt, not something to type. ls lists files; head previews the
+          first lines. R1 and R2 represent paired reads. The CSV is a sample sheet. Checking names alone does not prove
+          sample identity: reconcile it with the laboratory records. The filenames, account, host, pipeline paths and
+          outputs in this sequence are fictional. Do not narrate every character.</p>
+        <p></p>
+      </aside>
+    </section>
+    <section id="computer-transfer" class="step bio-compute" data-hud-title="Send the data to HPC" data-x="-4200"
+      data-y="2500" data-z="0" data-rotate-y="0">
+      <div class="slide-header">
+        <div class="eyebrow-container"><span class="eyebrow">Bioinformatics · 12</span></div>
+        <h2 class="slide-title">Send the data to HPC</h2>
+        <p class="slide-subtitle">Copy the run, verify the transfer, then make it available to the analysis.</p>
+      </div>
+      <div class="grid-sidebar">
+        <pre class="bio-terminal"><code><span class="comment"># Copy to approved compute storage</span>
+<span class="command">$ rsync -av run_042/ \</span>
+<span class="command">    analyst@hpc.example:/project/run_042/</span>
+<span class="comment"># Connect and check the copied files</span>
+<span class="command">$ ssh analyst@hpc.example</span>
+<span class="command">$ cd /project/run_042</span>
+<span class="command">$ sha256sum -c checksums.sha256</span>
+<span class="result">S001_R1.fastq.gz: OK</span>
+<span class="result">S001_R2.fastq.gz: OK</span></code></pre>
+        <div>
+          <h3 class="bio-side-title">HPC = shared computing power</h3>
+          <p class="bio-lead">Large analyses run on dedicated servers.</p>
+          <p class="bio-lead">A checksum is a file fingerprint: matching fingerprints help confirm that the copy is
+            intact.</p>
+        </div>
+      </div>
+      <div class="callout info">
+        <div class="callout-content">Use approved infrastructure and access controls. The original data remain available
+          after transfer.</div>
+      </div>
+      <aside class="speaker-notes" hidden data-seconds="60">
+        <h3>Send the data to HPC · 1:00</h3>
+        <p>HPC means high-performance computing. This is an illustrative SSH-based transfer to institution-approved
+          storage; some labs use managed transfer services or shared storage instead. hpc.example is a documentation
+          placeholder, not a destination. The checksum manifest must be created from the source FASTQ files before
+          copying and protected with the run records. The displayed OK messages are illustrative. A matching hash
+          verifies copied bytes, not sample identity or biological quality. Transfer permissions, encryption and storage
+          location follow local rules.</p>
+        <p></p>
+      </aside>
+    </section>
+    <section id="computer-pipeline" class="step bio-compute" data-hud-title="Run and monitor the pipeline"
+      data-x="-4200" data-y="1000" data-z="0" data-rotate-y="0">
+      <div class="slide-header">
+        <div class="eyebrow-container"><span class="eyebrow">Bioinformatics · 13</span></div>
+        <h2 class="slide-title">Run and monitor the pipeline</h2>
+        <p class="slide-subtitle">One submitted job can coordinate many tools and analysis steps.</p>
+      </div>
+      <div class="grid-2">
+        <pre class="bio-terminal"><code><span class="comment"># Ask the scheduler to run the job</span>
+<span class="command">$ sbatch run-panel.sh</span>
+<span class="result">Submitted batch job 8421</span>
+<span class="command">$ squeue -u &quot;$USER&quot;</span>
+<span class="result">JOBID   NAME     STATE</span>
+<span class="result">8421    panel    RUNNING</span></code></pre>
+        <pre class="bio-terminal"><code><span class="comment"># Inside the prepared job script</span>
+<span class="command">nextflow run /pipelines/panel/1.0/main.nf \</span>
+<span class="command">  --input samples.csv \</span>
+<span class="command">  -with-report execution.html \</span>
+<span class="command">  -with-trace tasks.tsv</span></code></pre>
+      </div>
+      <div class="bio-flow"><span>QC</span><b>→</b><span>Mapping</span><b>→</b><span>Analysis
+          branches</span><b>→</b><span>Annotated results</span></div>
+      <div class="callout info">
+        <div class="callout-content"><strong>The scheduler allocates resources; the workflow engine coordinates the
+            analysis steps.</strong>A completed computer job still needs quality review.</div>
+      </div>
+      <aside class="speaker-notes" hidden data-seconds="60">
+        <h3>Run and monitor the pipeline · 1:00</h3>
+        <p>Slurm and Nextflow are examples, not a claim about the local platform. sbatch submits a prepared script and
+          returns a job ID; squeue shows its queue status. The script also needs site-specific resource requests and an
+          installed software environment, omitted from the slide. The fictional pipeline defines --input; it is not a
+          universal Nextflow option. Its fixed path illustrates a selected release, not proof of validation. In a
+          configured cluster workflow, individual tasks can be scheduled separately. Keep tool versions, container
+          identifiers, reference genome, annotation database versions, parameters and task logs. execution.html is a
+          computational execution report, not the clinical report. If a task fails, inspect logs and resolve the cause
+          before rerunning; do not assume a finished job passed clinical QC.</p>
+        <p>Sources: <a href="https://slurm.schedmd.com/sbatch.html" target="_blank" rel="noopener">Slurm sbatch</a>; <a
+            href="https://slurm.schedmd.com/squeue.html" target="_blank" rel="noopener">Slurm squeue</a>; <a
+            href="https://docs.seqera.io/nextflow/reports/" target="_blank" rel="noopener">Nextflow reports</a>.</p>
+      </aside>
+    </section>
+    <section id="computer-outputs" class="step bio-compute" data-hud-title="Manage, curate and store the outputs"
+      data-x="-4200" data-y="-500" data-z="0" data-rotate-y="0">
+      <div class="slide-header">
+        <div class="eyebrow-container"><span class="eyebrow">Bioinformatics · 14</span></div>
+        <h2 class="slide-title">Manage, curate and store the outputs</h2>
+        <p class="slide-subtitle">The result is a traceable record, not just a folder of files.</p>
+      </div>
+      <div class="grid-sidebar">
+        <pre class="bio-terminal"><code><span class="comment">run_042/</span>
+<span class="result">├── inputs/       FASTQ + sample sheet</span>
+<span class="result">├── results/      BAM + VCF + tables</span>
+<span class="result">├── qc/           quality summaries</span>
+<span class="result">├── provenance/   versions + logs</span>
+<span class="result">├── review/       decisions + evidence</span>
+<span class="result">└── released/     approved report</span></code></pre>
+        <div>
+          <ol class="bio-compute-steps">
+            <li><strong>Manage:</strong> link outputs to the sample and analysis run.</li>
+            <li><strong>Curate:</strong> review quality and evidence; record decisions and who made them.</li>
+            <li><strong>Store:</strong> retain an approved, versioned record with controlled access and tested backups.
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div class="callout info">
+        <div class="callout-content">Temporary compute space is not the archive. Keep reviewed releases distinct from
+          working results.</div>
+      </div>
+      <aside class="speaker-notes" hidden data-seconds="60">
+        <h3>Manage, curate and store the outputs · 1:00</h3>
+        <p>The folder tree illustrates the information to preserve, not a mandatory directory standard. A laboratory
+          information system, review platform, database or object store may hold these records. BAM is aligned reads;
+          VCF stores candidate variants; other analysis branches may produce tables. Keep raw findings separate from
+          review decisions and released reports. Link each reviewed finding to evidence sources and dates, reviewer,
+          software/reference versions, and report version. Do not overwrite a released report when evidence changes:
+          create a traceable revision. Follow the local retention policy for raw data, alignments, intermediates and
+          reports; no universal retention period is implied here. HPC scratch can be purged and must not be the sole
+          long-term copy. Backups need restoration checks.</p>
+        <p></p>
+      </aside>
+    </section>
+    <section id="summary" data-hud-title="The report: findings with their limits" class="step" data-x="-2200"
+      data-y="400" data-z="500" data-rotate-y="245">
+      <div class="slide-header">
+        <div class="eyebrow-container">
+          <span class="eyebrow">Bioinformatics · 15</span>
+        </div>
+        <h2 class="slide-title">The report: findings with their limits</h2>
+        <p class="slide-subtitle">A reviewed molecular report supports the pathologist’s interpretation.</p>
+      </div>
+      <div class="grid-sidebar">
+        <div class="bio-report">
+          <div class="bio-report-top">MOLECULAR FINDINGS · teaching example</div>
+          <h3>Sample &amp; test</h3>
+          <p>Tissue specimen • targeted DNA/RNA panel</p>
+          <h3>Reviewed finding</h3>
+          <p>A gene change detected with supporting evidence</p>
+          <h3>Quality &amp; limitations</h3>
+          <p>State what was assessed, and what could not be assessed reliably</p>
+          <h3>Interpretive context</h3>
+          <p>Relevant evidence, uncertainty, and authorised review</p>
+        </div>
+        <div>
+          <h3 class="bio-side-title">Clinical context</h3>
+          <p class="bio-lead">The pathologist combines molecular findings with morphology and other results.</p>
+          <p class="bio-lead">The treating team considers diagnosis, treatment options and the patient’s situation.</p>
+        </div>
+      </div>
+      <div class="callout info">
+        <div class="callout-content">“No relevant change detected” does not mean “no cancer” or “every possible change
+          excluded”.</div>
+      </div>
+      <aside class="speaker-notes" hidden data-seconds="70">
+        <h3>The report: findings with their limits · 1:10</h3>
+        <p>This is a schematic report, not a clinical template or a real patient result. Explain the distinction between
+          a software results file, a reviewed molecular report and integrated diagnosis. The exact reporting and
+          sign-out pathway is local. Useful reports include identifiers, methods/scope, findings, relevant evidence,
+          quality limitations and authorization. A biomarker may inform diagnosis or treatment, but a finding does not
+          guarantee an effective treatment.</p>
+        <p>Source: <a href="https://www.cancer.gov/about-cancer/treatment/types/biomarker-testing-cancer-treatment"
+            target="_blank" rel="noopener">NCI: interpreting biomarker results</a>.</p>
+      </aside>
+    </section>
+    <section id="decisions" data-hud-title="What bioinformatics contributes" class="step" data-x="-1100" data-y="-1500"
       data-z="200" data-rotate-y="285">
       <div class="slide-header">
         <div class="eyebrow-container">
-          <span class="eyebrow amber">
-            [Section label]
-          </span>
-          <span class="pill pill-amber">
-            [Decision / next steps]
-          </span>
+          <span class="eyebrow">Bioinformatics · 16</span>
         </div>
-        <h2 class="slide-title">
-          [Decision title]:
-          <span class="gradient-text">
-            [Next steps]
-          </span>
-        </h2>
-        <p class="slide-subtitle">
-          [Introduce the options, responsibilities or actions to compare.]
-        </p>
+        <h2 class="slide-title">What bioinformatics contributes</h2>
+        <p class="slide-subtitle">Reliable evidence that people can interpret.</p>
       </div>
-      <div class="grid-4">
+      <div class="grid-3">
         <div class="card highlight-cyan">
-          <div class="card-title">
-            [Option 1]
-          </div>
-          <div class="card-body">
-            <p>
-              [Describe this option or action in one short sentence.]
-            </p>
-            <div style="margin-top: 14px;">
-              <span class="pill pill-cyan">
-                [Status]
-              </span>
-            </div>
-          </div>
+          <div class="card-title">Checks</div>
+          <div class="card-body">Is the available evidence good enough?</div>
         </div>
         <div class="card highlight-magenta">
-          <div class="card-title">
-            [Option 2]
-          </div>
-          <div class="card-body">
-            <p>
-              [Describe this option or action in one short sentence.]
-            </p>
-            <div style="margin-top: 14px;">
-              <span class="pill pill-magenta">
-                [Status]
-              </span>
-            </div>
-          </div>
+          <div class="card-title">Finds</div>
+          <div class="card-body">Which kinds of change does this test support?</div>
         </div>
         <div class="card highlight-purple">
-          <div class="card-title">
-            [Option 3]
-          </div>
-          <div class="card-body">
-            <p>
-              [Describe this option or action in one short sentence.]
-            </p>
-            <div style="margin-top: 14px;">
-              <span class="pill pill-purple">
-                [Status]
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="card highlight-green">
-          <div class="card-title">
-            [Option 4]
-          </div>
-          <div class="card-body">
-            <p>
-              [Describe this option or action in one short sentence.]
-            </p>
-            <div style="margin-top: 14px;">
-              <span class="pill pill-green">
-                [Status]
-              </span>
-            </div>
-          </div>
+          <div class="card-title">Explains</div>
+          <div class="card-body">What is known, and what remains uncertain?</div>
         </div>
       </div>
-      <div class="grid-2" style="margin-top: 20px;">
-        <div class="callout warning">
-          <span class="callout-icon">
-            ⚠️
-          </span>
-          <div class="callout-content">
-            <strong>
-              [Open question]
-            </strong>
-            [Describe the uncertainty or dependency to resolve.]
-          </div>
-        </div>
-        <div class="callout success">
-          <span class="callout-icon">
-            ✓
-          </span>
-          <div class="callout-content">
-            <strong>
-              [Agreed next step]
-            </strong>
-            [Name the action, owner and intended timing.]
-          </div>
+      <img class="bio-figure" src="./assets/specimen-journey.svg"
+        alt="The full specimen journey returns to clinical review.">
+      <div class="callout info">
+        <div class="callout-content">
+          <strong>The final handoff is a reviewed finding with context and limits.</strong>
         </div>
       </div>
+      <aside class="speaker-notes" hidden data-seconds="40">
+        <h3>What bioinformatics contributes · 0:40</h3>
+        <p>Close by handing back to the colleague or opening discussion. Repeat the three verbs: checks, finds,
+          explains. The wet lab and analysis are interdependent. Bioinformatics keeps processing consistent and
+          traceable while providing different analysis methods for different biological questions. Do not imply that all
+          laboratories can detect all types of change.</p>
+        <p>
+        </p>
+      </aside>
     </section>
-    <!-- SLIDE 13: Overview & discussion. Replace bracketed text; retain the classes for this layout. -->
-    <section id="overview" data-hud-title="Overview & Discussion" class="step" data-x="1200" data-y="1400" data-z="4800"
-      data-scale="5.2">
-      <div class="eyebrow-container" style="justify-content: center;">
-        <span class="eyebrow purple">
-          [Closing section]
-        </span>
-        <span class="pill pill-cyan">
-          [Questions & discussion]
-        </span>
-      </div>
-      <h2 class="slide-title">
-        [Discussion title]
-      </h2>
-      <p>
-        [Add a closing question or a brief invitation to discuss the topics below.]
-      </p>
+    <section id="overview" data-hud-title="Overview &amp; discussion" class="step" data-x="1200" data-y="1400"
+      data-z="4800" data-scale="5.2">
+      <h2 class="slide-title">Overview &amp; discussion</h2>
+      <p>Select a topic to revisit it. Press <strong>N</strong> on a slide for presenter notes and sources.</p>
       <div class="overview-grid">
-        <button class="overview-pill-btn" data-target="intro">
-          <span>
-            01 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 1 title]
-          </strong>
-        </button>
-        <button class="overview-pill-btn" data-target="two-cards">
-          <span>
-            02 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 2 title]
-          </strong>
-        </button>
-        <button class="overview-pill-btn" data-target="three-cards">
-          <span>
-            03 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 3 title]
-          </strong>
-        </button>
-        <button class="overview-pill-btn" data-target="four-metrics">
-          <span>
-            04 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 4 title]
-          </strong>
-        </button>
-        <button class="overview-pill-btn" data-target="comparison">
-          <span>
-            05 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 5 title]
-          </strong>
-        </button>
-        <button class="overview-pill-btn" data-target="specifications">
-          <span>
-            06 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 6 title]
-          </strong>
-        </button>
-        <button class="overview-pill-btn" data-target="two-perspectives">
-          <span>
-            07 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 7 title]
-          </strong>
-        </button>
-        <button class="overview-pill-btn" data-target="workflow">
-          <span>
-            08 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 8 title]
-          </strong>
-        </button>
-        <button class="overview-pill-btn" data-target="sidebar">
-          <span>
-            09 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 9 title]
-          </strong>
-        </button>
-        <button class="overview-pill-btn" data-target="technical-example">
-          <span>
-            10 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 10 title]
-          </strong>
-        </button>
-        <button class="overview-pill-btn" data-target="summary">
-          <span>
-            11 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 11 title]
-          </strong>
-        </button>
-        <button class="overview-pill-btn" data-target="decisions">
-          <span>
-            12 · [TOPIC]
-          </span>
-          <strong>
-            [Topic 12 title]
-          </strong>
-        </button>
+        <button class="overview-pill-btn" data-target="intro"><span>01</span>Bioinformatics in the specimen
+          journey</button>
+        <button class="overview-pill-btn" data-target="two-cards"><span>02</span>Different roles, shared
+          responsibility</button>
+        <button class="overview-pill-btn" data-target="three-cards"><span>03</span>The specimen sets the limits</button>
+        <button class="overview-pill-btn" data-target="four-metrics"><span>04</span>Sequencing produces short
+          reads</button>
+        <button class="overview-pill-btn" data-target="comparison"><span>05</span>A repeatable workflow, with different
+          branches</button>
+        <button class="overview-pill-btn" data-target="specifications"><span>06</span>Quality control: can we trust the
+          evidence?</button>
+        <button class="overview-pill-btn" data-target="two-perspectives"><span>07</span>Mapping: where does each read
+          belong?</button>
+        <button class="overview-pill-btn" data-target="workflow"><span>08</span>Analysis example 1: a small sequence
+          change</button>
+        <button class="overview-pill-btn" data-target="sidebar"><span>09</span>Analysis examples 2 &amp; 3: copies and
+          fusions</button>
+        <button class="overview-pill-btn" data-target="technical-example"><span>10</span>Annotation: give a finding
+          biological context</button>
+        <button class="overview-pill-btn" data-target="computer-input"><span>11</span>At the computer: inspect the
+          inputs</button>
+        <button class="overview-pill-btn" data-target="computer-transfer"><span>12</span>Send the data to HPC</button>
+        <button class="overview-pill-btn" data-target="computer-pipeline"><span>13</span>Run and monitor the
+          pipeline</button>
+        <button class="overview-pill-btn" data-target="computer-outputs"><span>14</span>Manage, curate and store the
+          outputs</button>
+        <button class="overview-pill-btn" data-target="summary"><span>15</span>The report: findings with their
+          limits</button>
+        <button class="overview-pill-btn" data-target="decisions"><span>16</span>What bioinformatics
+          contributes</button>
       </div>
     </section>
   </main>
@@ -1639,12 +799,12 @@
   </script>
   <!-- Fallback if vendor path is not served directly (e.g. static /public or CDN) -->
   <script>
-    if (typeof impress === 'undefined') {
+    if (typeof impress !== 'function') {
       document.write('<script src="./public/vendor/impress.js"><\/script>');
     }
   </script>
   <script>
-    if (typeof impress === 'undefined') {
+    if (typeof impress !== 'function') {
       document.write('<script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"><\/script>');
     }
   </script>
@@ -1796,7 +956,8 @@
           '• H: Toggle HUD buttons (Hide / Show)\n' +
           '• Click any card in 3D space: Fly camera to card\n' +
           '• Click dots on bottom bar: Quick jump to topic\n' +
-          '• F: Fullscreen mode'
+          '• F: Fullscreen mode\n' +
+          '• N: Presenter notes and sources'
         );
       });
 
@@ -1819,6 +980,28 @@
       });
       api.init();
     });
+  </script>
+
+  <dialog id="bio-notes" aria-labelledby="bio-notes-title"><button class="hud-btn" type="button"
+      onclick="this.closest('dialog').close()">Close</button>
+    <h2 id="bio-notes-title">Presenter notes</h2>
+    <div id="bio-notes-content"></div>
+  </dialog>
+  <script>
+    document.addEventListener('keydown', function (event) {
+      const dialog = document.getElementById('bio-notes');
+      if (dialog.open) {
+        event.stopImmediatePropagation();
+        if (event.key === 'Escape' || event.key.toLowerCase() === 'n') { event.preventDefault(); dialog.close(); }
+        return;
+      }
+      if (event.key.toLowerCase() !== 'n' || event.ctrlKey || event.metaKey || event.altKey) return;
+      event.preventDefault(); event.stopImmediatePropagation();
+      const notes = document.querySelector('.step.active .speaker-notes');
+      document.getElementById('bio-notes-content').innerHTML = notes ? notes.innerHTML : '<p>Discussion and topic navigation. Content slides total 15 minutes.</p>';
+      dialog.showModal();
+    }, true);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.getElementById('impress').dataset.transitionDuration = '0';
   </script>
 </body>
 
