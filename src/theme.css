@@ -1359,15 +1359,41 @@ body.impress-on-overview .step:not(#overview):hover {
 }
 
 /* Reusable layout classes formerly written as HTML style attributes. */
-.hud-department { font-size: 0.7rem; }
-.intro-hero-subtitle { font-size: 42px; font-weight: 600; color: var(--text-muted); }
-.callout-compact { margin-top: 18px; }
-.card-detail { margin-top: 14px; }
-.speaker-heading { color: #ffffff; font-size: 20px; margin-bottom: 12px; }
-.section-gap { margin-top: 20px; }
-.tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-.eyebrow-centered { justify-content: center; }
-.bio-branch-caption { color: var(--text-muted); font-size: 18px; }
+.hud-department {
+  font-size: 0.7rem;
+}
+.intro-hero-subtitle {
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.callout-compact {
+  margin-top: 18px;
+}
+.card-detail {
+  margin-top: 14px;
+}
+.speaker-heading {
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.section-gap {
+  margin-top: 20px;
+}
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.eyebrow-centered {
+  justify-content: center;
+}
+.bio-branch-caption {
+  color: var(--text-muted);
+  font-size: 18px;
+}
 
 /* Bioinformatics deck: diagrams, terminal examples and presenter notes. */
 .bio-figure {
@@ -1383,7 +1409,7 @@ body.impress-on-overview .step:not(#overview):hover {
   line-height: 1.5;
 }
 
-.bioinf-deck .card-body p+p {
+.bioinf-deck .card-body p + p {
   margin-top: 20px;
 }
 
@@ -1429,7 +1455,7 @@ body.impress-on-overview .step:not(#overview):hover {
   border: 1px solid var(--border-bright);
   border-left: 5px solid var(--cyan);
   padding: 24px 28px;
-  background: rgba(0, 242, 254, .025);
+  background: rgba(0, 242, 254, 0.025);
 }
 
 .bio-report-top {
@@ -1462,18 +1488,18 @@ body.impress-on-overview .step:not(#overview):hover {
 }
 
 .step.active .bio-figure {
-  animation: bio-appear .8s ease both;
+  animation: bio-appear 0.8s ease both;
 }
 
 @keyframes bio-appear {
   from {
     opacity: 0;
-    transform: translateY(12px)
+    transform: translateY(12px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0)
+    transform: translateY(0);
   }
 }
 
@@ -1494,23 +1520,22 @@ body.impress-on-overview .step:not(#overview):hover {
 }
 
 #bio-notes::backdrop {
-  background: rgba(0, 0, 0, .75);
+  background: rgba(0, 0, 0, 0.75);
 }
 
 #bio-notes a {
-  color: var(--cyan)
+  color: var(--cyan);
 }
 
 #bio-notes p {
-  margin-top: 16px
+  margin-top: 16px;
 }
 
 #bio-notes button {
-  float: right
+  float: right;
 }
 
-@media (prefers-reduced-motion:reduce) {
-
+@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
@@ -1575,4 +1600,47 @@ body.impress-on-overview .step:not(#overview):hover {
 
 .bioinf-deck #overview .overview-pill-btn {
   padding: 12px 14px;
+}
+
+/* Structured presenter reference notes. */
+#bio-notes h3 {
+  font-size: 25px;
+  line-height: 1.35;
+  margin: 18px 0;
+}
+#bio-notes h4 {
+  color: var(--cyan);
+  font-size: 20px;
+  margin: 22px 0 8px;
+}
+#bio-notes ul,
+#bio-notes ol {
+  padding-left: 26px;
+  margin: 8px 0 16px;
+}
+#bio-notes li {
+  margin: 7px 0;
+}
+#bio-notes strong {
+  color: var(--text-main);
+  font-weight: 700;
+}
+#bio-notes code {
+  font: 0.9em var(--font-mono);
+  color: var(--cyan);
+}
+#bio-notes .notes-equation {
+  font-size: 30px;
+  padding: 16px 24px;
+  margin: 18px 0 8px;
+  text-align: center;
+  background: rgba(0, 242, 254, 0.06);
+  border-left: 3px solid var(--cyan);
+}
+#bio-notes .notes-equation-detail {
+  text-align: center;
+  margin: 8px 0 16px;
+}
+#bio-notes .notes-sources {
+  font-size: 17px;
 }

@@ -167,11 +167,19 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="25">
         <h3>Bioinformatics in the specimen journey · 0:25</h3>
-        <p>Open at the handoff from the wet-lab presentation. Bioinformatics uses computing and biological knowledge to
-          turn measurements into evidence. This is a simplified tumour-panel workflow, not a description of a locally
-          verified SOP. Introduce the pathologist at both ends: tissue assessment and clinical interpretation.</p>
-        <p>Source: <a href="https://www.cancer.gov/about-cancer/treatment/types/biomarker-testing-cancer-treatment"
-            target="_blank" rel="noopener">NCI: biomarker testing</a>.</p>
+        <h4>The specimen journey</h4>
+        <ul>
+          <li><strong>Bioinformatics</strong> combines computing and biological knowledge to turn sequencing
+            measurements into interpretable evidence.</li>
+          <li>The workflow connects tissue assessment, laboratory preparation, sequencing, computational analysis and
+            clinical review.</li>
+          <li>The diagram shows a simplified tumour-panel workflow; the exact steps depend on the assay.</li>
+        </ul>
+        <h4>Sources</h4>
+        <ul class="notes-sources">
+          <li><a href="https://www.cancer.gov/about-cancer/treatment/types/biomarker-testing-cancer-treatment"
+              target="_blank" rel="noopener">NCI: biomarker testing</a></li>
+        </ul>
       </aside>
     </section>
     <section id="two-cards" data-hud-title="Different roles, shared responsibility" class="step" data-x="1800"
@@ -214,11 +222,20 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="40">
         <h3>Different roles, shared responsibility · 0:40</h3>
-        <p>Avoid presenting the professions as isolated boxes. Molecular biologists may also review variants, and
-          bioinformaticians help with assay validation and troubleshooting. Local roles and report authorization vary.
-          The treating team makes treatment decisions; software does not prescribe.</p>
-        <p>
-        </p>
+        <h4>Responsibilities</h4>
+        <ul>
+          <li><strong>Molecular biology:</strong> specimen handling, DNA/RNA preparation, library preparation and
+            laboratory quality assessment.</li>
+          <li><strong>Bioinformatics:</strong> data processing, quality assessment, variant detection, annotation and
+            reproducibility.</li>
+          <li><strong>Clinical interpretation:</strong> integration of molecular findings with tissue and clinical
+            information.</li>
+        </ul>
+        <h4>Shared work</h4>
+        <ul>
+          <li>Variant review, assay validation and troubleshooting can involve several professions.</li>
+          <li>Role boundaries and report authorisation depend on the laboratory.</li>
+        </ul>
       </aside>
     </section>
     <section id="three-cards" data-hud-title="The specimen sets the limits" class="step" data-x="3600" data-y="0"
@@ -244,13 +261,24 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="40">
         <h3>The specimen sets the limits · 0:40</h3>
-        <p>Connect to the colleague’s wet-lab discussion rather than repeating extraction chemistry. Pathologists assess
-          tissue and tumour content. The circles are a schematic mixture, not histology. A library is prepared material
-          the sequencer can read. DNA and RNA are used according to the assay; not every specimen or test uses both.
-          Computation cannot reliably recover information never measured.</p>
-        <p>Source: <a
-            href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
-            target="_blank" rel="noopener">Illumina: analysis methods</a>.</p>
+        <h4>Specimen and library</h4>
+        <ul>
+          <li>Pathologists assess tissue suitability and tumour content.</li>
+          <li>A <strong>sequencing library</strong> contains prepared nucleic acid fragments suitable for sequencing.
+          </li>
+          <li>DNA, RNA or both are analysed according to the assay.</li>
+        </ul>
+        <h4>Limits of the input</h4>
+        <ul>
+          <li>Low tumour content and damaged material can reduce the ability to detect a variant.</li>
+          <li><strong>Computational analysis cannot reliably recover information that was never measured.</strong></li>
+          <li>The cell diagram is schematic rather than a histological image.</li>
+        </ul>
+        <h4>Sources</h4>
+        <ul class="notes-sources">
+          <li><a href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
+              target="_blank" rel="noopener">Illumina: analysis methods</a></li>
+        </ul>
       </aside>
     </section>
     <section id="four-metrics" data-hud-title="Sequencing produces short reads" class="step" data-x="4800" data-y="1200"
@@ -260,25 +288,47 @@
           <span class="eyebrow">Bioinformatics · 04</span>
         </div>
         <h2 class="slide-title">Sequencing produces short reads</h2>
-        <p class="slide-subtitle">A read is a short stretch of DNA or RNA represented by letters.</p>
+        <p class="slide-subtitle">A read records the nucleotide sequence of a DNA or cDNA fragment.</p>
       </div>
       <img class="bio-figure" src="./assets/sequencing-reads.svg"
         alt="Short DNA sequences and a simplified four-line FASTQ record with sequence and quality characters.">
       <div class="callout info">
         <div class="callout-content">
-          <strong>FASTQ: letters + a confidence score for each letter.</strong>The sequencer’s signals are converted and
+          <strong>FASTQ: nucleotide sequence + a quality score for each base call.</strong>The sequencer’s signals are
+          converted and
           assigned to samples before these files reach analysis.
         </div>
       </div>
       <aside class="speaker-notes" hidden data-seconds="40">
         <h3>Sequencing produces short reads · 0:40</h3>
-        <p>The FASTQ example is synthetic and deliberately short; actual reads are longer. Explain A, C, G and T as the
-          alphabet of DNA. Do not teach ASCII quality encodings. Paired-end sequencing commonly produces R1 and R2
-          files. Instrument-level output can be BCL on Illumina systems; FASTQ is a useful starting point for this
-          explanation, not the only instrument output.</p>
-        <p>Source: <a
-            href="https://supportassets.illumina.com/informatics/sequencing-data-analysis/sequence-file-formats.html"
-            target="_blank" rel="noopener">Illumina: sequencing file formats</a>.</p>
+        <h4>Reads and files</h4>
+        <ul>
+          <li><strong>Base calling</strong> infers the nucleotide sequence from instrument signals. RNA libraries are
+            typically sequenced as cDNA.</li>
+          <li><strong>FASTQ</strong> stores the sequence and a quality score for each base call. Paired-end sequencing
+            commonly produces R1 and R2 files.</li>
+          <li>Illumina instrument-level output can be BCL, which is converted into FASTQ for downstream analysis.</li>
+          <li>The displayed read and quality string are synthetic, shortened examples.</li>
+        </ul>
+        <h4>Phred quality scores</h4>
+        <ul>
+          <li><strong>P</strong> is the base caller’s estimated probability that a base call is incorrect.</li>
+          <li><strong>Higher Q means a lower estimated error probability.</strong> These scores concern base calls, not
+            clinical interpretation.</li>
+        </ul>
+        <div class="notes-equation" aria-label="Q equals minus ten times log base ten of P"><var>Q</var> = −10
+          log<sub>10</sub>(<var>P</var>)</div>
+        <p class="notes-equation-detail"><var>P</var> = 10<sup>−<var>Q</var>/10</sup></p>
+        <ul>
+          <li><strong>Q30:</strong> <var>P</var> = 0.001 = <strong>0.1%</strong> estimated error probability.</li>
+          <li><strong>Q40:</strong> <var>P</var> = 0.0001 = <strong>0.01%</strong> estimated error probability.</li>
+        </ul>
+        <h4>Sources</h4>
+        <ul class="notes-sources">
+          <li><a
+              href="https://supportassets.illumina.com/informatics/sequencing-data-analysis/sequence-file-formats.html"
+              target="_blank" rel="noopener">Illumina: sequencing file formats</a></li>
+        </ul>
       </aside>
     </section>
     <section id="comparison" data-hud-title="A repeatable workflow, with different branches" class="step" data-x="4600"
@@ -303,7 +353,7 @@
       </div>
       <p class="bio-branch-caption">Detection branches · selected for the test’s purpose</p>
       <div class="bio-branches">
-        <span>Single letters / small changes</span>
+        <span>SNVs / short indels</span>
         <span>Extra or missing copies</span>
         <span>Joined genes</span>
       </div>
@@ -315,13 +365,24 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="55">
         <h3>A repeatable workflow, with different branches · 0:55</h3>
-        <p>Read the workflow as questions: Can we trust it? Where does it belong? What differs? What is known? What can
-          we report? The three labels below detection are parallel analysis branches, not consecutive steps. Annotation
-          usually follows detection and can also feed filtering and scoring. QC occurs before and after mapping and
-          calling. A validated pipeline fixes methods and acceptance rules for its intended use.</p>
-        <p>Source: <a
-            href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
-            target="_blank" rel="noopener">Illumina: analysis methods</a>.</p>
+        <h4>Common workflow</h4>
+        <ul>
+          <li><strong>QC and read filtering → mapping → variant detection → annotation and prioritisation → review and
+              reporting.</strong></li>
+          <li>Quality checks occur before and after mapping and variant calling.</li>
+          <li>Annotation generally follows detection and can also contribute to filtering and scoring.</li>
+        </ul>
+        <h4>Analysis branches</h4>
+        <ul>
+          <li>SNV/indel, copy-number and fusion analyses are <strong>parallel branches</strong>, rather than consecutive
+            steps.</li>
+          <li>A validated pipeline specifies methods and acceptance criteria for its intended use.</li>
+        </ul>
+        <h4>Sources</h4>
+        <ul class="notes-sources">
+          <li><a href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
+              target="_blank" rel="noopener">Illumina: analysis methods</a></li>
+        </ul>
       </aside>
     </section>
     <section id="specifications" data-hud-title="Quality control: can we trust the evidence?" class="step" data-x="3600"
@@ -338,7 +399,7 @@
       <div class="grid-3">
         <div class="card highlight-cyan">
           <div class="card-title">Read quality</div>
-          <div class="card-body">Are the letters reliable?</div>
+          <div class="card-body">Are the base calls reliable?</div>
         </div>
         <div class="card highlight-purple">
           <div class="card-title">Coverage</div>
@@ -354,14 +415,26 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="70">
         <h3>Quality control: can we trust the evidence? · 1:10</h3>
-        <p>Spend time on coverage: reading a region repeatedly provides evidence; simply having a large file is not
-          enough. The question marks are a teaching device, not literal FASTQ quality notation. Trimming/filtering
-          depends on the validated workflow. Contamination checks, identity checks and molecular complexity can be
-          relevant; acceptance thresholds are assay-specific. Never imply that every repeat is independent: duplicates
-          can derive from the same original molecule.</p>
-        <p>Source: <a
-            href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
-            target="_blank" rel="noopener">Illumina: analysis methods</a>.</p>
+        <h4>Quality measures</h4>
+        <ul>
+          <li><strong>Base quality:</strong> confidence in individual base calls.</li>
+          <li><strong>Coverage:</strong> the evidence available at each target region; total file size alone does not
+            establish adequate coverage.</li>
+          <li><strong>Sample checks:</strong> contamination, identity and molecular complexity, as supported by the
+            assay.</li>
+        </ul>
+        <h4>Interpretation</h4>
+        <ul>
+          <li>Trimming, filtering and acceptance thresholds are specific to the validated workflow.</li>
+          <li><strong>Repeated reads are not necessarily independent evidence:</strong> duplicates can originate from
+            the same molecule.</li>
+          <li>The question marks in the diagram indicate uncertainty; they are not literal FASTQ quality notation.</li>
+        </ul>
+        <h4>Sources</h4>
+        <ul class="notes-sources">
+          <li><a href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
+              target="_blank" rel="noopener">Illumina: analysis methods</a></li>
+        </ul>
       </aside>
     </section>
     <section id="two-perspectives" data-hud-title="Mapping: where does each read belong?" class="step" data-x="2000"
@@ -390,22 +463,36 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="55">
         <h3>Mapping: where does each read belong? · 0:55</h3>
-        <p>Point along the reference and then the overlapping reads. The reference genome is a coordinate guide, not a
-          matched healthy sample from this patient. Repetitive sequences can make placement ambiguous. RNA mapping must
-          account for splicing. Mapping is a common foundation, but its settings and reference depend on the test.</p>
-        <p>Source: <a
-            href="https://supportassets.illumina.com/informatics/sequencing-data-analysis/sequence-file-formats.html"
-            target="_blank" rel="noopener">Illumina: file formats</a>.</p>
+        <h4>Alignment to a reference</h4>
+        <ul>
+          <li>The reference genome provides genomic coordinates; it is <strong>not a matched normal sample</strong> from
+            the patient.</li>
+          <li>Overlapping aligned reads provide observations of the same region.</li>
+          <li>BAM/CRAM files record read alignments.</li>
+        </ul>
+        <h4>Mapping uncertainty</h4>
+        <ul>
+          <li>Repetitive sequences can make read placement ambiguous.</li>
+          <li>RNA alignment must account for splicing.</li>
+          <li>Reference choice and mapping settings depend on the assay.</li>
+        </ul>
+        <h4>Sources</h4>
+        <ul class="notes-sources">
+          <li><a
+              href="https://supportassets.illumina.com/informatics/sequencing-data-analysis/sequence-file-formats.html"
+              target="_blank" rel="noopener">Illumina: file formats</a></li>
+        </ul>
       </aside>
     </section>
-    <section id="workflow" data-hud-title="Analysis example 1: a small sequence change" class="step" data-x="400"
+    <section id="workflow" data-hud-title="Analysis example 1: a base substitution" class="step" data-x="400"
       data-y="4400" data-z="1100" data-rotate-y="100">
       <div class="slide-header">
         <div class="eyebrow-container">
           <span class="eyebrow">Bioinformatics · 08</span>
         </div>
-        <h2 class="slide-title">Analysis example 1: a small sequence change</h2>
-        <p class="slide-subtitle">Compare the aligned reads with the reference. Simplified teaching example.</p>
+        <h2 class="slide-title">Analysis example 1: a base substitution</h2>
+        <p class="slide-subtitle">A single-nucleotide variant (SNV): an A-to-T substitution relative to the reference.
+        </p>
       </div>
       <img class="bio-figure" src="./assets/small-variant.svg"
         alt="Five synthetic reads; three have a highlighted T where the reference has an A.">
@@ -416,15 +503,31 @@
         </div>
       </div>
       <aside class="speaker-notes" hidden data-seconds="85">
-        <h3>Analysis example 1: a small sequence change · 1:25</h3>
-        <p>This is a toy example, not a clinical calling rule or a real variant. Three of five drawn reads differ; that
-          alone is not sufficient evidence. Real calling uses validated rules, adequate coverage, independent support
-          and error models. Small variants include single-letter substitutions and short insertions or deletions. A VCF
-          commonly stores these candidate variants. A difference from the reference is not automatically cancer-related,
-          inherited or clinically relevant.</p>
-        <p>Source: <a
-            href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
-            target="_blank" rel="noopener">Illumina: small variant analysis</a>.</p>
+        <h3>Analysis example 1: a base substitution · 1:25</h3>
+        <h4>Variant types</h4>
+        <ul>
+          <li><strong>SNV:</strong> a single-nucleotide difference, such as the illustrated A-to-T substitution.</li>
+          <li><strong>Indel:</strong> an insertion or deletion; short indels are another class of small variant.</li>
+          <li><strong>SNP</strong> usually refers to a population polymorphism. SNV is the general term and is
+            appropriate for an unspecified tumour variant.</li>
+        </ul>
+        <h4>Evidence and interpretation</h4>
+        <ul>
+          <li>Three of the five schematic reads differ from the reference. This alone is <strong>not a clinical calling
+              criterion</strong>.</li>
+          <li>Variant calling combines validated rules, adequate coverage, independent support and error models.</li>
+          <li>VCF files commonly store candidate variants.</li>
+          <li>A reference difference does not establish clinical relevance or distinguish somatic from germline origin.
+          </li>
+        </ul>
+        <h4>Sources</h4>
+        <ul class="notes-sources">
+          <li><a href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
+              target="_blank" rel="noopener">Illumina: small variant analysis</a></li>
+          <li><a
+              href="https://www.cancer.gov/publications/dictionaries/genetics-dictionary/def/single-nucleotide-variant"
+              target="_blank" rel="noopener">NCI: SNV terminology</a></li>
+        </ul>
       </aside>
     </section>
     <section id="sidebar" data-hud-title="Analysis examples 2 &amp; 3: copies and fusions" class="step" data-x="-1200"
@@ -456,15 +559,28 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="70">
         <h3>Analysis examples 2 &amp; 3: copies and fusions · 1:10</h3>
-        <p>The copy illustration shows the concept, not an exact copy count derived from raw read depth. Actual
-          copy-number analysis normalizes signal and considers sample composition and other confounders. Fusion callers
-          seek reads or read pairs supporting a new junction; RNA can show an expressed fusion, while some assays detect
-          rearrangements in DNA. These are parallel branches, not optional improvisation per case. Broader analyses such
-          as tumour mutational burden and microsatellite instability require their own validated methods and suitable
-          assays; mention only if useful.</p>
-        <p>Source: <a
-            href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
-            target="_blank" rel="noopener">Illumina: copy number and fusion workflows</a>.</p>
+        <h4>Copy-number analysis</h4>
+        <ul>
+          <li>Normalised signal is compared with a suitable baseline.</li>
+          <li>Sample composition and other confounders affect interpretation; raw read depth alone does not give an
+            exact copy count.</li>
+        </ul>
+        <h4>Fusion analysis</h4>
+        <ul>
+          <li>Reads or read pairs can support a new junction between genes.</li>
+          <li>RNA analysis can identify an expressed fusion; some DNA assays detect the underlying rearrangement.</li>
+        </ul>
+        <h4>Assay scope</h4>
+        <ul>
+          <li>These are separate analysis branches with their own validation requirements.</li>
+          <li>Tumour mutational burden and microsatellite instability also require suitable assays and validated
+            methods.</li>
+        </ul>
+        <h4>Sources</h4>
+        <ul class="notes-sources">
+          <li><a href="https://help.connected.illumina.com/tso500/dragen-tso-500-guides/dragen-tso-500-v2.6/overview-1"
+              target="_blank" rel="noopener">Illumina: copy number and fusion workflows</a></li>
+        </ul>
       </aside>
     </section>
     <section id="technical-example" data-hud-title="Annotation: give a finding biological context" class="step"
@@ -474,7 +590,8 @@
           <span class="eyebrow">Bioinformatics · 10</span>
         </div>
         <h2 class="slide-title">Annotation: give a finding biological context</h2>
-        <p class="slide-subtitle">A coordinate becomes a gene, a possible effect, and a link to existing knowledge.</p>
+        <p class="slide-subtitle">Annotation links a variant to a gene, transcript, predicted consequence and existing
+          evidence.</p>
       </div>
       <div class="bio-flow">
         <span>Candidate<br>change</span>
@@ -488,7 +605,7 @@
       <div class="grid-2">
         <div class="card highlight-cyan">
           <div class="card-title">A simplified example</div>
-          <div class="card-body">A letter change → a protein change → published evidence to review.</div>
+          <div class="card-body">Missense variant → amino acid substitution → published evidence to review.</div>
         </div>
         <div class="card highlight-purple">
           <div class="card-title">Prioritisation and filtering</div>
@@ -503,12 +620,26 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="70">
         <h3>Annotation: give a finding biological context · 1:10</h3>
-        <p>Annotation can add gene, transcript, predicted consequence and population frequency. Clinical curation can
-          add disease-specific evidence from knowledge bases and literature. Predictions are not proof of pathogenicity
-          or treatment response. Distinguish read filtering from candidate-variant filtering here. The laboratory uses
-          validated rules and review; evidence sources and versions should be traceable.</p>
-        <p>Source: <a href="https://www.ensembl.org/info/docs/tools/vep/index.html" target="_blank"
-            rel="noopener">Ensembl: Variant Effect Predictor</a>.</p>
+        <h4>Annotation</h4>
+        <ul>
+          <li>Variant annotations can include the <strong>gene, transcript, predicted consequence and population
+              frequency</strong>.</li>
+          <li>A missense variant changes an amino acid. Other variants can have synonymous, splice-related or noncoding
+            consequences.</li>
+        </ul>
+        <h4>Curation and filtering</h4>
+        <ul>
+          <li>Clinical curation adds disease-specific evidence from knowledge bases and literature.</li>
+          <li><strong>Predicted effects do not establish pathogenicity or treatment response.</strong></li>
+          <li>Read filtering concerns sequencing observations; candidate-variant filtering concerns detected
+            differences.</li>
+          <li>Validated review rules and recorded evidence sources and versions support traceability.</li>
+        </ul>
+        <h4>Sources</h4>
+        <ul class="notes-sources">
+          <li><a href="https://www.ensembl.org/info/docs/tools/vep/index.html" target="_blank" rel="noopener">Ensembl:
+              Variant Effect Predictor</a></li>
+        </ul>
       </aside>
     </section>
     <section id="computer-input" class="step bio-compute" data-hud-title="At the computer: inspect the inputs"
@@ -543,11 +674,19 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="60">
         <h3>At the computer: inspect the inputs · 1:00</h3>
-        <p>Explain the dollar sign as the terminal prompt, not something to type. ls lists files; head previews the
-          first lines. R1 and R2 represent paired reads. The CSV is a sample sheet. Checking names alone does not prove
-          sample identity: reconcile it with the laboratory records. The filenames, account, host, pipeline paths and
-          outputs in this sequence are fictional. Do not narrate every character.</p>
-        <p></p>
+        <h4>Terminal commands</h4>
+        <ul>
+          <li><code>$</code> denotes the terminal prompt.</li>
+          <li><code>ls</code> lists files; <code>head</code> displays the first lines of a file.</li>
+          <li><code>R1</code> and <code>R2</code> identify paired reads; the CSV sample sheet links sample identifiers
+            to input files.</li>
+        </ul>
+        <h4>Sample tracking</h4>
+        <ul>
+          <li>Filenames alone do not establish sample identity. Input assignments are reconciled with laboratory
+            records.</li>
+          <li>The filenames, accounts, host, pipeline paths and outputs in the computing examples are fictional.</li>
+        </ul>
       </aside>
     </section>
     <section id="computer-transfer" class="step bio-compute" data-hud-title="Send the data to HPC" data-x="-4200"
@@ -580,13 +719,21 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="60">
         <h3>Send the data to HPC · 1:00</h3>
-        <p>HPC means high-performance computing. This is an illustrative SSH-based transfer to institution-approved
-          storage; some labs use managed transfer services or shared storage instead. hpc.example is a documentation
-          placeholder, not a destination. The checksum manifest must be created from the source FASTQ files before
-          copying and protected with the run records. The displayed OK messages are illustrative. A matching hash
-          verifies copied bytes, not sample identity or biological quality. Transfer permissions, encryption and storage
-          location follow local rules.</p>
-        <p></p>
+        <h4>Transfer to HPC</h4>
+        <ul>
+          <li><strong>HPC:</strong> high-performance computing on shared servers.</li>
+          <li>The example uses SSH-based transfer to approved storage. Managed transfer services or shared storage are
+            alternatives.</li>
+          <li><code>hpc.example</code> is a placeholder hostname.</li>
+        </ul>
+        <h4>Integrity and access</h4>
+        <ul>
+          <li>The checksum manifest is generated from source FASTQ files before transfer and retained with the run
+            records.</li>
+          <li><strong>Matching hashes verify copied bytes, not sample identity or biological quality.</strong></li>
+          <li>The displayed <code>OK</code> messages are illustrative.</li>
+          <li>Access permissions, encryption and storage location follow local requirements.</li>
+        </ul>
       </aside>
     </section>
     <section id="computer-pipeline" class="step bio-compute" data-hud-title="Run and monitor the pipeline"
@@ -617,17 +764,32 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="60">
         <h3>Run and monitor the pipeline · 1:00</h3>
-        <p>Slurm and Nextflow are examples, not a claim about the local platform. sbatch submits a prepared script and
-          returns a job ID; squeue shows its queue status. The script also needs site-specific resource requests and an
-          installed software environment, omitted from the slide. The fictional pipeline defines --input; it is not a
-          universal Nextflow option. Its fixed path illustrates a selected release, not proof of validation. In a
-          configured cluster workflow, individual tasks can be scheduled separately. Keep tool versions, container
-          identifiers, reference genome, annotation database versions, parameters and task logs. execution.html is a
-          computational execution report, not the clinical report. If a task fails, inspect logs and resolve the cause
-          before rerunning; do not assume a finished job passed clinical QC.</p>
-        <p>Sources: <a href="https://slurm.schedmd.com/sbatch.html" target="_blank" rel="noopener">Slurm sbatch</a>; <a
-            href="https://slurm.schedmd.com/squeue.html" target="_blank" rel="noopener">Slurm squeue</a>; <a
-            href="https://docs.seqera.io/nextflow/reports/" target="_blank" rel="noopener">Nextflow reports</a>.</p>
+        <h4>Job scheduling and workflows</h4>
+        <ul>
+          <li><strong>Slurm:</strong> <code>sbatch</code> submits a prepared job script and returns a job ID;
+            <code>squeue</code> shows queue status.</li>
+          <li><strong>Nextflow:</strong> coordinates analysis tasks, which can be scheduled separately on a configured
+            cluster.</li>
+          <li>Job scripts require resource requests and an available software environment.</li>
+          <li>The fictional pipeline defines <code>--input</code>; it is not a universal Nextflow option. A fixed
+            release path alone does not establish validation.</li>
+        </ul>
+        <h4>Run records and review</h4>
+        <ul>
+          <li>Traceability includes tool and container versions, reference genome, annotation database versions,
+            parameters and task logs.</li>
+          <li><code>execution.html</code> describes computational execution; it is not a clinical report.</li>
+          <li>Failed tasks require investigation before rerunning. <strong>Job completion does not establish that
+              clinical QC passed.</strong></li>
+          <li>Slurm and Nextflow are illustrative platforms; local implementations can differ.</li>
+        </ul>
+        <h4>Sources</h4>
+        <ul class="notes-sources">
+          <li><a href="https://slurm.schedmd.com/sbatch.html" target="_blank" rel="noopener">Slurm sbatch</a></li>
+          <li><a href="https://slurm.schedmd.com/squeue.html" target="_blank" rel="noopener">Slurm squeue</a></li>
+          <li><a href="https://docs.seqera.io/nextflow/reports/" target="_blank" rel="noopener">Nextflow reports</a>
+          </li>
+        </ul>
       </aside>
     </section>
     <section id="computer-outputs" class="step bio-compute" data-hud-title="Manage, curate and store the outputs"
@@ -660,15 +822,23 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="60">
         <h3>Manage, curate and store the outputs · 1:00</h3>
-        <p>The folder tree illustrates the information to preserve, not a mandatory directory standard. A laboratory
-          information system, review platform, database or object store may hold these records. BAM is aligned reads;
-          VCF stores candidate variants; other analysis branches may produce tables. Keep raw findings separate from
-          review decisions and released reports. Link each reviewed finding to evidence sources and dates, reviewer,
-          software/reference versions, and report version. Do not overwrite a released report when evidence changes:
-          create a traceable revision. Follow the local retention policy for raw data, alignments, intermediates and
-          reports; no universal retention period is implied here. HPC scratch can be purged and must not be the sole
-          long-term copy. Backups need restoration checks.</p>
-        <p></p>
+        <h4>Output records</h4>
+        <ul>
+          <li><strong>BAM:</strong> aligned reads. <strong>VCF:</strong> candidate variants. Other branches can produce
+            result tables.</li>
+          <li>Raw findings, review decisions and released reports are distinct records.</li>
+          <li>The folder tree illustrates record types; laboratories may use information systems, review platforms,
+            databases or object stores.</li>
+        </ul>
+        <h4>Curation and retention</h4>
+        <ul>
+          <li>Each reviewed finding is linked to evidence sources and dates, reviewer, software/reference versions and
+            report version.</li>
+          <li>Changes to released reports require <strong>traceable revisions</strong>.</li>
+          <li>Retention of raw data, alignments, intermediates and reports follows local policy.</li>
+          <li><strong>HPC scratch space can be purged.</strong> Long-term storage requires retained copies and backups
+            with restoration checks.</li>
+        </ul>
       </aside>
     </section>
     <section id="summary" data-hud-title="The report: findings with their limits" class="step" data-x="-2200"
@@ -704,13 +874,28 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="70">
         <h3>The report: findings with their limits · 1:10</h3>
-        <p>This is a schematic report, not a clinical template or a real patient result. Explain the distinction between
-          a software results file, a reviewed molecular report and integrated diagnosis. The exact reporting and
-          sign-out pathway is local. Useful reports include identifiers, methods/scope, findings, relevant evidence,
-          quality limitations and authorization. A biomarker may inform diagnosis or treatment, but a finding does not
-          guarantee an effective treatment.</p>
-        <p>Source: <a href="https://www.cancer.gov/about-cancer/treatment/types/biomarker-testing-cancer-treatment"
-            target="_blank" rel="noopener">NCI: interpreting biomarker results</a>.</p>
+        <h4>Reporting stages</h4>
+        <ul>
+          <li><strong>Software output:</strong> computational findings and quality metrics.</li>
+          <li><strong>Reviewed molecular report:</strong> findings with supporting evidence, interpretation and
+            limitations.</li>
+          <li><strong>Integrated diagnosis:</strong> molecular results considered alongside morphology and other
+            clinical information.</li>
+        </ul>
+        <h4>Report content and limits</h4>
+        <ul>
+          <li>Reports include identifiers, methods and scope, findings, relevant evidence, quality limitations and
+            authorisation.</li>
+          <li>Reporting and sign-out pathways are laboratory-specific.</li>
+          <li>A biomarker may inform diagnosis or treatment, but <strong>does not guarantee an effective
+              treatment</strong>.</li>
+          <li>The displayed report is schematic and contains no patient result.</li>
+        </ul>
+        <h4>Sources</h4>
+        <ul class="notes-sources">
+          <li><a href="https://www.cancer.gov/about-cancer/treatment/types/biomarker-testing-cancer-treatment"
+              target="_blank" rel="noopener">NCI: interpreting biomarker results</a></li>
+        </ul>
       </aside>
     </section>
     <section id="decisions" data-hud-title="What bioinformatics contributes" class="step" data-x="-1100" data-y="-1500"
@@ -745,12 +930,19 @@
       </div>
       <aside class="speaker-notes" hidden data-seconds="40">
         <h3>What bioinformatics contributes · 0:40</h3>
-        <p>Close by handing back to the colleague or opening discussion. Repeat the three verbs: checks, finds,
-          explains. The wet lab and analysis are interdependent. Bioinformatics keeps processing consistent and
-          traceable while providing different analysis methods for different biological questions. Do not imply that all
-          laboratories can detect all types of change.</p>
-        <p>
-        </p>
+        <h4>Bioinformatics contributions</h4>
+        <ul>
+          <li><strong>Checks:</strong> assessment of data quality and analytical suitability.</li>
+          <li><strong>Finds:</strong> detection of the variant types supported by the assay.</li>
+          <li><strong>Explains:</strong> annotation and evidence that support interpretation, with uncertainty made
+            explicit.</li>
+        </ul>
+        <h4>The final handoff</h4>
+        <ul>
+          <li>Wet-lab measurements and computational analysis are interdependent.</li>
+          <li>Consistent, traceable processing supports a reviewed finding with context and limitations.</li>
+          <li>Analytical scope varies by test; no single assay detects every type of change.</li>
+        </ul>
       </aside>
     </section>
     <section id="overview" data-hud-title="Overview &amp; discussion" class="step" data-x="1200" data-y="1400"
@@ -771,8 +963,8 @@
           evidence?</button>
         <button class="overview-pill-btn" data-target="two-perspectives"><span>07</span>Mapping: where does each read
           belong?</button>
-        <button class="overview-pill-btn" data-target="workflow"><span>08</span>Analysis example 1: a small sequence
-          change</button>
+        <button class="overview-pill-btn" data-target="workflow"><span>08</span>Analysis example 1: a base
+          substitution</button>
         <button class="overview-pill-btn" data-target="sidebar"><span>09</span>Analysis examples 2 &amp; 3: copies and
           fusions</button>
         <button class="overview-pill-btn" data-target="technical-example"><span>10</span>Annotation: give a finding
