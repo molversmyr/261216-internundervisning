@@ -741,15 +741,37 @@
         <p class="slide-subtitle">Copy the run, verify the transfer, then make it available to the analysis.</p>
       </div>
       <div class="grid-sidebar">
-        <pre class="bio-terminal"><code><span class="comment"># Copy to approved compute storage</span>
-<span class="command">$ rsync -av run_042/ \</span>
-<span class="command">    analyst@hpc.example:/project/run_042/</span>
-<span class="comment"># Connect and check the copied files</span>
+        <pre class="bio-terminal bio-terminal-scroll" tabindex="0" role="region"
+          aria-label="Synthetic transfer and verification transcript"><code><span class="comment"># Synthetic transcript: transfer a prepared run</span>
+<span class="comment"># Start in the directory containing run_042/</span>
+<span class="comment"># 1. Create the destination on the approved HPC system</span>
+<span class="command">$ ssh analyst@hpc.example &quot;mkdir -p /project/oncology/sequencing/run_042&quot;</span>
+<span class="comment"># 2. Copy reads, sample sheet and checksum manifest</span>
+<span class="comment"># The trailing slash copies the contents of run_042/</span>
+<span class="command">$ rsync -av --progress run_042/ analyst@hpc.example:/project/oncology/sequencing/run_042/</span>
+<span class="result">sending incremental file list</span>
+<span class="result">S001_R1.fastq.gz</span>
+<span class="result">S001_R2.fastq.gz</span>
+<span class="result">S002_R1.fastq.gz</span>
+<span class="result">S002_R2.fastq.gz</span>
+<span class="result">samples.csv</span>
+<span class="result">checksums.sha256</span>
+<span class="comment"># 3. Connect to the HPC login node</span>
 <span class="command">$ ssh analyst@hpc.example</span>
-<span class="command">$ cd /project/run_042</span>
+<span class="command">$ cd /project/oncology/sequencing/run_042</span>
+<span class="comment"># 4. Verify the copies against the source checksums</span>
 <span class="command">$ sha256sum -c checksums.sha256</span>
 <span class="result">S001_R1.fastq.gz: OK</span>
-<span class="result">S001_R2.fastq.gz: OK</span></code></pre>
+<span class="result">S001_R2.fastq.gz: OK</span>
+<span class="result">S002_R1.fastq.gz: OK</span>
+<span class="result">S002_R2.fastq.gz: OK</span>
+<span class="comment"># 5. Check the input paths used by the remote analysis</span>
+<span class="command">$ head -n 3 samples.csv</span>
+<span class="result">sample_id,read1,read2,library_type,panel,run_id</span>
+<span class="result">S001,/project/oncology/sequencing/run_042/S001_R1.fastq.gz,/project/oncology/sequencing/run_042/S001_R2.fastq.gz,DNA,tumour_panel,run_042</span>
+<span class="result">S002,/project/oncology/sequencing/run_042/S002_R1.fastq.gz,/project/oncology/sequencing/run_042/S002_R2.fastq.gz,DNA,tumour_panel,run_042</span>
+<span class="comment"># Matching checksums confirm file integrity, not sample identity.</span>
+<span class="comment"># The source files remain in place; rsync here copies rather than moves.</span></code></pre>
         <div>
           <h3 class="bio-side-title">HPC = shared computing power</h3>
           <p class="bio-lead">Large analyses run on dedicated servers.</p>
@@ -757,6 +779,8 @@
             intact.</p>
         </div>
       </div>
+      <p class="bio-compute-caption">Synthetic transcript · scroll vertically and horizontally for all commands and
+        output.</p>
       <div class="callout info">
         <div class="callout-content">Use approved infrastructure and access controls. The original data remain available
           after transfer.</div>
@@ -768,7 +792,8 @@
           <li><strong>HPC:</strong> high-performance computing on shared servers.</li>
           <li>The example uses SSH-based transfer to approved storage. Managed transfer services or shared storage are
             alternatives.</li>
-          <li><code>hpc.example</code> is a placeholder hostname.</li>
+          <li><code>hpc.example</code> is a placeholder hostname. The destination uses the same absolute paths as the
+            sample sheet; different storage layouts require updated input paths.</li>
         </ul>
         <h4>Integrity and access</h4>
         <ul>
@@ -788,18 +813,68 @@
         <p class="slide-subtitle">One submitted job can coordinate many tools and analysis steps.</p>
       </div>
       <div class="grid-2">
-        <pre class="bio-terminal"><code><span class="comment"># Ask the scheduler to run the job</span>
+        <pre class="bio-terminal bio-terminal-scroll" tabindex="0" role="region"
+          aria-label="Synthetic job submission and monitoring transcript"><code><span class="comment"># Synthetic transcript: submit and monitor</span>
+<span class="command">$ cd /project/oncology/sequencing/run_042</span>
+<span class="comment"># Create the log directory before submitting</span>
+<span class="command">$ mkdir -p logs results</span>
+<span class="comment"># Submit the prepared script shown in the right pane</span>
 <span class="command">$ sbatch run-panel.sh</span>
 <span class="result">Submitted batch job 8421</span>
-<span class="command">$ squeue -u &quot;$USER&quot;</span>
-<span class="result">JOBID   NAME     STATE</span>
-<span class="result">8421    panel    RUNNING</span></code></pre>
-        <pre class="bio-terminal"><code><span class="comment"># Inside the prepared job script</span>
+<span class="comment"># Check whether the job is waiting or running</span>
+<span class="command">$ squeue -j 8421 -o &quot;%.8i %.12j %.10T %.20R&quot;</span>
+<span class="result">JOBID    NAME         STATE      NODELIST(REASON)</span>
+<span class="result">8421     panel        PENDING    (Resources)</span>
+<span class="comment"># A later status check</span>
+<span class="command">$ squeue -j 8421 -o &quot;%.8i %.12j %.10T %.20R&quot;</span>
+<span class="result">8421     panel        RUNNING    compute-03</span>
+<span class="comment"># Inspect the execution log (illustrative messages)</span>
+<span class="command">$ tail -n 8 logs/panel-8421.log</span>
+<span class="result">[workflow] Input: samples.csv; samples: 2</span>
+<span class="result">[workflow] Read QC and filtering complete</span>
+<span class="result">[workflow] Alignment complete</span>
+<span class="result">[workflow] SNV/indel and copy-number analyses complete</span>
+<span class="result">[workflow] Annotation complete</span>
+<span class="result">[workflow] Execution report: results/execution.html</span>
+<span class="result">[workflow] Task trace: results/tasks.tsv</span>
+<span class="result">[workflow] Run complete; sample QC review still required</span>
+<span class="comment"># Locate outputs for review</span>
+<span class="command">$ ls results/</span>
+<span class="result">alignments/  variants/  qc/  execution.html  tasks.tsv</span>
+<span class="comment"># PENDING means queued; RUNNING means resources are allocated.</span>
+<span class="comment"># Completion is an execution status, not clinical approval.</span></code></pre>
+        <pre class="bio-terminal bio-terminal-scroll" tabindex="0" role="region"
+          aria-label="Illustrative pipeline job script"><code><span class="comment">#!/usr/bin/env bash</span>
+<span class="comment"># run-panel.sh — illustrative site-configured job script</span>
+<span class="command">#SBATCH --job-name=panel</span>
+<span class="command">#SBATCH --cpus-per-task=2</span>
+<span class="command">#SBATCH --mem=4G</span>
+<span class="command">#SBATCH --time=04:00:00</span>
+<span class="command">#SBATCH --output=logs/panel-%j.log</span>
+<span class="comment"># These resources are for the workflow controller.</span>
+<span class="comment"># Analysis tasks request their own resources via the slurm profile.</span>
+<span class="command">set -euo pipefail</span>
+<span class="command">cd /project/oncology/sequencing/run_042</span>
+<span class="comment"># Load the site-provided Nextflow environment</span>
+<span class="command">module load nextflow</span>
+<span class="command">mkdir -p results</span>
+<span class="comment"># Select a pipeline release and the configured HPC profile</span>
+<span class="comment"># --input and --outdir are defined by this example pipeline</span>
 <span class="command">nextflow run /pipelines/panel/1.0/main.nf \</span>
+<span class="command">  -profile slurm \</span>
 <span class="command">  --input samples.csv \</span>
-<span class="command">  -with-report execution.html \</span>
-<span class="command">  -with-trace tasks.tsv</span></code></pre>
+<span class="command">  --outdir results \</span>
+<span class="command">  -with-report results/execution.html \</span>
+<span class="command">  -with-trace results/tasks.tsv</span>
+<span class="comment"># The profile defines the scheduler, task resources and software.</span>
+<span class="comment"># DNA inputs here use DNA analysis branches; RNA fusion analysis</span>
+<span class="comment"># requires suitable RNA inputs and its own validated workflow.</span>
+<span class="comment"># execution.html: computational execution summary</span>
+<span class="comment"># tasks.tsv: per-task status and resource-use records</span>
+<span class="comment"># Clinical interpretation follows sample and result QC.</span></code></pre>
       </div>
+      <p class="bio-compute-caption">Left: submission and status · Right: job script · Both examples are synthetic and
+        scrollable.</p>
       <div class="bio-flow"><span>QC</span><b>→</b><span>Mapping</span><b>→</b><span>Analysis
           branches</span><b>→</b><span>Annotated results</span></div>
       <div class="callout info">
@@ -815,8 +890,13 @@
           </li>
           <li><strong>Nextflow:</strong> coordinates analysis tasks, which can be scheduled separately on a configured
             cluster.</li>
-          <li>Job scripts require resource requests and an available software environment.</li>
-          <li>The fictional pipeline defines <code>--input</code>; it is not a universal Nextflow option. A fixed
+          <li>The script requests resources for the Nextflow controller. The site-configured <code>slurm</code> profile
+            submits analysis tasks with their own resource requests and software settings.</li>
+          <li>The module name, profile, release path, resource values and output layout are examples, not local
+            configuration. The log directory exists before submission because Slurm opens the job log before the script
+            runs.</li>
+          <li>The fictional pipeline defines <code>--input</code> and <code>--outdir</code>; they are not universal
+            Nextflow options. A fixed
             release path alone does not establish validation.</li>
         </ul>
         <h4>Run records and review</h4>
@@ -849,7 +929,7 @@
 <span class="result">├── inputs/       FASTQ + sample sheet</span>
 <span class="result">├── results/      BAM + VCF + tables</span>
 <span class="result">├── qc/           quality summaries</span>
-<span class="result">├── provenance/   versions + logs</span>
+<span class="result">├── logs/         versions + logs</span>
 <span class="result">├── review/       decisions + evidence</span>
 <span class="result">└── released/     approved report</span></code></pre>
         <div>

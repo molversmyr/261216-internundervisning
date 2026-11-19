@@ -1684,3 +1684,11 @@ body.impress-on-overview .step:not(#overview):hover {
   border-radius: 6px;
   border: 2px solid #101c30;
 }
+
+/* Keep the two expanded pipeline panes and process summary within the slide. */
+#computer-pipeline .bio-terminal-scroll {
+  height: 290px;
+}
+#computer-pipeline .bio-flow {
+  margin: 20px 0;
+}
