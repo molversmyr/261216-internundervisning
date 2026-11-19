@@ -1692,3 +1692,60 @@ body.impress-on-overview .step:not(#overview):hover {
 #computer-pipeline .bio-flow {
   margin: 20px 0;
 }
+
+/* Terminal controls stay visible while the transcript scrolls underneath. */
+.terminal-frame {
+  position: relative;
+  min-width: 0;
+}
+.terminal-frame .bio-terminal-scroll {
+  padding-top: 60px;
+}
+.terminal-expand {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  z-index: 2;
+  padding: 6px 12px;
+  border: 1px solid var(--cyan);
+  border-radius: 8px;
+  background: #101c30;
+  color: var(--cyan);
+  font: 14px var(--font-mono);
+  cursor: pointer;
+  pointer-events: auto;
+}
+.terminal-expand:hover {
+  background: #18334a;
+}
+.terminal-expand:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
+}
+#terminal-dialog {
+  width: 94vw;
+  max-width: 1800px;
+  height: 88vh;
+  max-height: 1000px;
+  margin: auto;
+  padding: 12px;
+  border: 1px solid var(--cyan);
+  border-radius: 20px;
+  background: #060b15;
+  color: var(--text-main);
+  overflow: hidden;
+}
+#terminal-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.85);
+}
+#terminal-dialog .terminal-frame {
+  width: 100%;
+  height: 100%;
+}
+#terminal-dialog .bio-terminal-scroll {
+  height: 100%;
+  font-size: 20px;
+}
+#terminal-dialog .terminal-expand {
+  font-size: 16px;
+}

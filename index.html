@@ -1175,6 +1175,101 @@
 
       var dots = Array.prototype.slice.call(dotsContainer.querySelectorAll('.hud-dot'));
 
+      // Move the original terminal into a modal top-layer dialog, preserving selection and scroll.
+      const terminalDialog = document.getElementById('terminal-dialog');
+      let expandedTerminal = null;
+      let lastTerminal = null;
+      const terminalKeys = new Set();
+
+      function collapseTerminal() {
+        if (!expandedTerminal) return;
+        const { frame, pane, button, marker } = expandedTerminal;
+        const top = pane.scrollTop;
+        const left = pane.scrollLeft;
+        terminalDialog.close();
+        marker.replaceWith(frame);
+        button.textContent = '⛶ Expand · E';
+        button.setAttribute('aria-expanded', 'false');
+        button.title = 'Expand terminal (E)';
+        expandedTerminal = null;
+        pane.scrollTop = top;
+        pane.scrollLeft = left;
+        button.focus({ preventScroll: true });
+      }
+
+      function toggleTerminal(frame) {
+        if (expandedTerminal) { collapseTerminal(); return; }
+        const pane = frame.querySelector('.bio-terminal-scroll');
+        const button = frame.querySelector('.terminal-expand');
+        const marker = document.createComment('Terminal position in slide');
+        const top = pane.scrollTop;
+        const left = pane.scrollLeft;
+        frame.before(marker);
+        expandedTerminal = { frame, pane, button, marker };
+        lastTerminal = frame;
+        button.textContent = '⛶ Collapse · E';
+        button.setAttribute('aria-expanded', 'true');
+        button.title = 'Collapse terminal (E or Esc)';
+        terminalDialog.setAttribute('aria-label', pane.getAttribute('aria-label'));
+        terminalDialog.append(frame);
+        terminalDialog.showModal();
+        pane.focus({ preventScroll: true });
+        pane.scrollTop = top;
+        pane.scrollLeft = left;
+      }
+
+      document.querySelectorAll('.bio-terminal-scroll').forEach(function (pane) {
+        const frame = document.createElement('div');
+        frame.className = 'terminal-frame';
+        pane.before(frame);
+        frame.append(pane);
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'terminal-expand';
+        button.textContent = '⛶ Expand · E';
+        button.title = 'Expand terminal (E)';
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-controls', 'terminal-dialog');
+        frame.append(button);
+        frame.addEventListener('focusin', function () { lastTerminal = frame; });
+        button.addEventListener('click', function (event) {
+          event.stopPropagation();
+          toggleTerminal(frame);
+        });
+      });
+      terminalDialog.addEventListener('cancel', function (event) {
+        event.preventDefault();
+        collapseTerminal();
+      });
+      // Capture before impress.js: a modal terminal must not navigate the deck.
+      window.addEventListener('keydown', function (event) {
+        if (document.getElementById('bio-notes').open) return;
+        const toggle = event.key.toLowerCase() === 'e' && !event.ctrlKey && !event.metaKey && !event.altKey;
+        if (expandedTerminal) {
+          terminalKeys.add(event.code);
+          event.stopImmediatePropagation();
+          if (toggle || event.key === 'Escape') {
+            event.preventDefault();
+            if (!event.repeat) collapseTerminal();
+          }
+        } else if (toggle) {
+          const focused = document.activeElement.closest('.terminal-frame');
+          const recent = lastTerminal?.closest('.step.active') ? lastTerminal : null;
+          const frame = focused || recent || document.querySelector('.step.active .terminal-frame');
+          if (!frame) return;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          terminalKeys.add(event.code);
+          if (!event.repeat) toggleTerminal(frame);
+        }
+      }, true);
+      window.addEventListener('keyup', function (event) {
+        if (expandedTerminal || terminalKeys.has(event.code)) {
+          terminalKeys.delete(event.code);
+          event.stopImmediatePropagation();
+        }
+      }, true);
+
       // Keep terminal interaction local; impress.js listens for navigation on the document.
       document.querySelectorAll('.bio-terminal-scroll').forEach(function (pane) {
         ['wheel', 'touchstart', 'touchmove', 'pointerdown', 'click'].forEach(function (type) {
@@ -1288,7 +1383,8 @@
           '• Click any card in 3D space: Fly camera to card\n' +
           '• Click dots on bottom bar: Quick jump to topic\n' +
           '• F: Fullscreen mode\n' +
-          '• N: Presenter notes and sources'
+          '• N: Presenter notes and sources\n' +
+          '• E: Expand / collapse the focused terminal (Esc also collapses)'
         );
       });
 
@@ -1312,6 +1408,8 @@
       api.init();
     });
   </script>
+
+  <dialog id="terminal-dialog" aria-label="Expanded terminal"></dialog>
 
   <dialog id="bio-notes" aria-labelledby="bio-notes-title"><button class="hud-btn" type="button"
       onclick="this.closest('dialog').close()">Close</button>
