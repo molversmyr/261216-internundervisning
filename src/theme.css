@@ -1749,3 +1749,20 @@ body.impress-on-overview .step:not(#overview):hover {
 #terminal-dialog .terminal-expand {
   font-size: 16px;
 }
+
+/* Command references in presenter notes: command first, explanation beneath. */
+#bio-notes .notes-commands {
+  margin: 10px 0 20px;
+}
+#bio-notes .notes-commands dt {
+  margin-top: 16px;
+  font-weight: 600;
+}
+#bio-notes .notes-commands dd {
+  margin: 5px 0 12px;
+  padding-left: 16px;
+  border-left: 2px solid var(--border-bright);
+}
+#bio-notes code {
+  overflow-wrap: anywhere;
+}

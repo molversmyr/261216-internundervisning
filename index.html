@@ -716,21 +716,60 @@
       </div>
       <aside class="speaker-notes" hidden>
         <h3>At the computer: inspect the inputs</h3>
-        <h4>Terminal commands</h4>
+        <h4>Reading the transcript</h4>
         <ul>
-          <li><code>$</code> denotes the terminal prompt.</li>
-          <li><code>ls</code> lists files; <code>head</code> displays the first lines of a file.</li>
-          <li><code>gzip -t</code> checks compressed-file integrity; <code>sha256sum</code> records or verifies file
-            checksums.</li>
-          <li><code>R1</code> and <code>R2</code> identify paired reads; the CSV sample sheet links sample identifiers
-            to input files.</li>
+          <li><code>$</code> marks the shell prompt; the following text is a command. Lines beginning with
+            <code>#</code> are comments. Other lines show example output.</li>
+          <li><code>R1</code> and <code>R2</code> are paired-end read files. All identifiers, file sizes and results are
+            synthetic.</li>
         </ul>
-        <h4>Sample tracking</h4>
+        <h4>1. Locate and list the input files</h4>
+        <dl class="notes-commands">
+          <dt><code>cd run_042</code> and <code>pwd</code></dt>
+          <dd>Change into the run directory, then display its full path.</dd>
+          <dt><code>ls -lh *.fastq.gz</code></dt>
+          <dd>List matching compressed FASTQ files. <code>-l</code> includes details; <code>-h</code> displays readable
+            file sizes. The wildcard <code>*</code> matches filenames.</dd>
+        </dl>
+        <p>The listing includes file permissions, owner, group and size. <code>-rw-r-----</code> means the owner can
+          read/write, the group can read, and other users have no access.</p>
+        <h4>2. Inspect the sample sheet</h4>
+        <p><code>head -n 3 samples.csv</code> displays the header and two sample rows. Each row links a <strong>sample
+            ID</strong> to its R1/R2 paths, library type, panel and run ID.</p>
+        <h4>3. Check paired-file presence</h4>
         <ul>
-          <li>Filenames alone do not establish sample identity. Input assignments are reconciled with laboratory
-            records.</li>
-          <li>The filenames, accounts, host, pipeline paths and outputs in the computing examples are fictional.</li>
+          <li><code>for r1 in *_R1.fastq.gz</code> loops over the R1 files.</li>
+          <li><code>${r1%_R1.fastq.gz}</code> removes the R1 suffix; adding <code>_R2.fastq.gz</code> constructs the
+            expected partner filename.</li>
+          <li><code>test -f "$r2"</code> checks whether that file exists. <code>printf</code> displays the corresponding
+            message; <code>%s</code> inserts a value and <code>\n</code> starts a new line.</li>
+          <li><strong>PAIR FOUND confirms file presence only:</strong> it does not establish matched read counts,
+            synchronised read identifiers or biological sample identity.</li>
         </ul>
+        <h4>4. Preview the FASTQ contents</h4>
+        <p><code>gzip -cd … | head -n 8</code> decompresses the file to standard output without replacing the original.
+          The pipe <code>|</code> passes that output to <code>head</code>, which displays eight lines: two four-line
+          FASTQ records.</p>
+        <ol>
+          <li>Read identifier beginning with <code>@</code>.</li>
+          <li>Nucleotide sequence.</li>
+          <li>The <code>+</code> separator.</li>
+          <li>One encoded quality score per base.</li>
+        </ol>
+        <h4>5. Check compression integrity</h4>
+        <p><code>gzip -t *.fastq.gz</code> tests the compressed files. <code>&amp;&amp;</code> runs the success message
+          only if that command succeeds. This checks compression integrity, <strong>not FASTQ structure or biological
+            quality</strong>.</p>
+        <h4>6. Record and verify checksums</h4>
+        <dl class="notes-commands">
+          <dt><code>sha256sum *.fastq.gz &gt; checksums.sha256</code></dt>
+          <dd>Calculate a SHA-256 fingerprint for each file and write the results to a manifest. <code>&gt;</code>
+            creates or replaces that file.</dd>
+          <dt><code>sha256sum -c checksums.sha256</code></dt>
+          <dd>Recalculate fingerprints and compare them with the manifest. <code>OK</code> indicates a matching
+            checksum.</dd>
+        </dl>
+        <p><strong>Sample identity still depends on reconciliation with laboratory records.</strong></p>
       </aside>
     </section>
     <section id="computer-transfer" class="step bio-compute" data-hud-title="Send the data to HPC" data-x="-4200"
@@ -787,21 +826,42 @@
       </div>
       <aside class="speaker-notes" hidden>
         <h3>Send the data to HPC</h3>
-        <h4>Transfer to HPC</h4>
+        <h4>1. Prepare the destination</h4>
+        <p><code>ssh analyst@hpc.example "mkdir -p …"</code> connects as <code>analyst</code> and runs the quoted
+          command remotely. <code>mkdir -p</code> creates the destination and any missing parent directories; an
+          existing directory is accepted.</p>
+        <h4>2. Copy the run</h4>
+        <dl class="notes-commands">
+          <dt><code>rsync -av --progress run_042/ analyst@hpc.example:/project/…/run_042/</code></dt>
+          <dd>Copy the run directory’s contents to the remote system over SSH in this example.</dd>
+        </dl>
         <ul>
-          <li><strong>HPC:</strong> high-performance computing on shared servers.</li>
-          <li>The example uses SSH-based transfer to approved storage. Managed transfer services or shared storage are
-            alternatives.</li>
-          <li><code>hpc.example</code> is a placeholder hostname. The destination uses the same absolute paths as the
-            sample sheet; different storage layouts require updated input paths.</li>
+          <li><code>-a</code>: archive mode, including recursive copying and preservation of common file attributes
+            where permissions allow.</li>
+          <li><code>-v</code>: verbose output showing the transfer activity.</li>
+          <li><code>--progress</code>: display progress for transferred files.</li>
+          <li>The trailing slash in <code>run_042/</code> means <strong>copy the directory’s contents</strong>. The
+            colon after the hostname separates the remote host from its destination path.</li>
+          <li>The source files remain in place. A transfer listing alone does not replace independent checksum
+            verification.</li>
         </ul>
-        <h4>Integrity and access</h4>
+        <h4>3. Open a remote session</h4>
+        <p><code>ssh analyst@hpc.example</code> opens an interactive session on the HPC login node. The subsequent
+          <code>cd</code>, checksum and sample-sheet commands run on that system.</p>
+        <h4>4. Verify the transferred files</h4>
+        <p><code>sha256sum -c checksums.sha256</code> compares the destination files against the manifest created at the
+          source. <strong>Matching hashes verify file contents, not sample identity or biological quality.</strong></p>
+        <h4>5. Check the analysis input paths</h4>
+        <p><code>head -n 3 samples.csv</code> displays the header and two sample rows. Here the remote files use the
+          same absolute paths as the sample sheet. A different destination layout requires corresponding input-path
+          updates.</p>
+        <h4>Infrastructure and scope</h4>
         <ul>
-          <li>The checksum manifest is generated from source FASTQ files before transfer and retained with the run
-            records.</li>
-          <li><strong>Matching hashes verify copied bytes, not sample identity or biological quality.</strong></li>
-          <li>The displayed <code>OK</code> messages are illustrative.</li>
-          <li>Access permissions, encryption and storage location follow local requirements.</li>
+          <li><strong>HPC</strong> means high-performance computing on shared servers; <code>hpc.example</code> is a
+            placeholder hostname.</li>
+          <li>Commands and outputs are synthetic. Managed transfer services or shared storage are alternatives.</li>
+          <li>Permissions, encryption and storage location follow local requirements. The source checksum manifest is
+            retained with the run records.</li>
         </ul>
       </aside>
     </section>
@@ -883,30 +943,73 @@
       </div>
       <aside class="speaker-notes" hidden>
         <h3>Run and monitor the pipeline</h3>
-        <h4>Job scheduling and workflows</h4>
+        <h4>Left pane · Submit and monitor</h4>
+        <dl class="notes-commands">
+          <dt><code>mkdir -p logs results</code></dt>
+          <dd>Create the output directories. The log directory must exist before submission because Slurm opens the job
+            log before the script runs.</dd>
+          <dt><code>sbatch run-panel.sh</code></dt>
+          <dd>Submit the script to Slurm. The returned job ID, <code>8421</code>, identifies this submission; it does
+            not mean analysis has finished.</dd>
+          <dt><code>squeue -j 8421 -o "%.8i %.12j %.10T %.20R"</code></dt>
+          <dd>Show this job’s queue status. <code>-j</code> selects the job and <code>-o</code> formats the columns: job
+            ID, name, state, and allocated node or waiting reason. The numbers set column widths.</dd>
+          <dt><code>tail -n 8 logs/panel-8421.log</code></dt>
+          <dd>Display the last eight lines of the execution log. The messages shown summarise pipeline stages and output
+            locations.</dd>
+          <dt><code>ls results/</code></dt>
+          <dd>List the outputs available for subsequent review.</dd>
+        </dl>
         <ul>
-          <li><strong>Slurm:</strong> <code>sbatch</code> submits a prepared job script and returns a job ID;
-            <code>squeue</code> shows queue status.
-          </li>
-          <li><strong>Nextflow:</strong> coordinates analysis tasks, which can be scheduled separately on a configured
-            cluster.</li>
-          <li>The script requests resources for the Nextflow controller. The site-configured <code>slurm</code> profile
-            submits analysis tasks with their own resource requests and software settings.</li>
-          <li>The module name, profile, release path, resource values and output layout are examples, not local
-            configuration. The log directory exists before submission because Slurm opens the job log before the script
-            runs.</li>
-          <li>The fictional pipeline defines <code>--input</code> and <code>--outdir</code>; they are not universal
-            Nextflow options. A fixed
-            release path alone does not establish validation.</li>
+          <li><strong>PENDING (Resources):</strong> queued while waiting for resources.</li>
+          <li><strong>RUNNING:</strong> resources have been allocated and the job is executing.</li>
+          <li><strong>Execution completion is not clinical approval.</strong> Sample QC and result review remain
+            separate steps.</li>
         </ul>
-        <h4>Run records and review</h4>
+        <h4>Right pane · Job script and resource requests</h4>
         <ul>
-          <li>Traceability includes tool and container versions, reference genome, annotation database versions,
-            parameters and task logs.</li>
-          <li><code>execution.html</code> describes computational execution; it is not a clinical report.</li>
-          <li>Failed tasks require investigation before rerunning. <strong>Job completion does not establish that
-              clinical QC passed.</strong></li>
-          <li>Slurm and Nextflow are illustrative platforms; local implementations can differ.</li>
+          <li><code>#!/usr/bin/env bash</code> selects Bash as the script interpreter.</li>
+          <li><code>#SBATCH</code> lines are instructions read by Slurm: <code>--job-name</code> labels the job,
+            <code>--cpus-per-task=2</code> requests two CPUs, <code>--mem=4G</code> requests memory, and
+            <code>--time=04:00:00</code> sets a four-hour runtime limit.</li>
+          <li><code>--output=logs/panel-%j.log</code> sets the log path; Slurm replaces <code>%j</code> with the job ID.
+          </li>
+          <li>These requests cover the <strong>Nextflow controller</strong>. The configured Slurm profile submits
+            analysis tasks with their own resource requirements.</li>
+        </ul>
+        <h4>Script environment</h4>
+        <ul>
+          <li><code>set -euo pipefail</code> enables stricter shell error handling: failures can stop the script, unset
+            variables produce errors, and a failed command within a pipe makes that pipeline fail. Bash has exceptions
+            to <code>-e</code>; this is not a replacement for checking outputs.</li>
+          <li><code>cd</code> selects the run directory. <code>module load nextflow</code> activates the site-provided
+            Nextflow environment.</li>
+          <li>A trailing <code>\</code> continues the command onto the next line.</li>
+        </ul>
+        <h4>Nextflow command · What each option provides</h4>
+        <dl class="notes-commands">
+          <dt><code>nextflow run /pipelines/panel/1.0/main.nf</code></dt>
+          <dd>Run the selected pipeline release.</dd>
+          <dt><code>-profile slurm</code></dt>
+          <dd>Load an existing site-configured profile defining scheduler integration, task resources and software
+            settings. The profile name alone does not create that configuration.</dd>
+          <dt><code>--input samples.csv</code> and <code>--outdir results</code></dt>
+          <dd>Supply the sample sheet and output directory. These parameters are defined by this fictional pipeline, not
+            universally by Nextflow.</dd>
+          <dt><code>-with-report results/execution.html</code></dt>
+          <dd>Generate an HTML summary of computational execution.</dd>
+          <dt><code>-with-trace results/tasks.tsv</code></dt>
+          <dd>Generate a tab-separated record of task status and execution metrics.</dd>
+        </dl>
+        <h4>Interpretation and traceability</h4>
+        <ul>
+          <li>DNA inputs here support the configured DNA analysis branches. RNA fusion analysis requires suitable RNA
+            inputs and its own validated workflow.</li>
+          <li>The job ID, resource values, profile, paths and log messages are illustrative; a fixed release path does
+            not itself establish validation.</li>
+          <li>Traceability includes software/container versions, reference genome, annotation database versions,
+            parameters and logs. Failed tasks require investigation before rerunning.</li>
+          <li><code>execution.html</code> is a computational report, <strong>not the clinical report</strong>.</li>
         </ul>
         <h4>Sources</h4>
         <ul class="notes-sources">
@@ -947,14 +1050,24 @@
       </div>
       <aside class="speaker-notes" hidden>
         <h3>Manage, curate and store the outputs</h3>
-        <h4>Output records</h4>
-        <ul>
-          <li><strong>BAM:</strong> aligned reads. <strong>VCF:</strong> candidate variants. Other branches can produce
-            result tables.</li>
-          <li>Raw findings, review decisions and released reports are distinct records.</li>
-          <li>The folder tree illustrates record types; laboratories may use information systems, review platforms,
-            databases or object stores.</li>
-        </ul>
+        <h4>Reading the directory tree</h4>
+        <p><code>run_042/</code> is the run’s parent directory. The branch characters show the folders beneath it; this
+          is a schematic file organisation, not executable code.</p>
+        <dl class="notes-commands">
+          <dt><code>inputs/</code></dt>
+          <dd>Original FASTQ files and the sample sheet linking identifiers to inputs.</dd>
+          <dt><code>results/</code></dt>
+          <dd>Computational findings: BAM alignments, VCF candidate variants and result tables from other analysis
+            branches.</dd>
+          <dt><code>qc/</code></dt>
+          <dd>Quality summaries supporting the assessment of sample and analysis suitability.</dd>
+          <dt><code>logs/</code></dt>
+          <dd>Execution records and software/version information supporting troubleshooting and reproducibility.</dd>
+          <dt><code>review/</code></dt>
+          <dd>Curation decisions, supporting evidence and reviewer records.</dd>
+          <dt><code>released/</code></dt>
+          <dd>Approved, versioned reports, kept distinct from working results.</dd>
+        </dl>
         <h4>Curation and retention</h4>
         <ul>
           <li>Each reviewed finding is linked to evidence sources and dates, reviewer, software/reference versions and
@@ -963,6 +1076,8 @@
           <li>Retention of raw data, alignments, intermediates and reports follows local policy.</li>
           <li><strong>HPC scratch space can be purged.</strong> Long-term storage requires retained copies and backups
             with restoration checks.</li>
+          <li>The tree illustrates record types; information systems, review platforms, databases or object stores may
+            hold the same information.</li>
         </ul>
       </aside>
     </section>
